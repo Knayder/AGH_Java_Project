@@ -1,7 +1,7 @@
 package main.agh.cs.lab2.utility;
 
 public enum MapDirection {
-    NORTH, SOUTH, WEST, EAST;
+    NORTH, EAST, SOUTH, WEST;
 
 
     public Vector2d to_unit_vector() {
@@ -29,6 +29,10 @@ public enum MapDirection {
             case SOUTH: return EAST;
         }
         return NORTH;
+    }
+
+    public MapDirection get_relative_direction(MoveDirection direction) {
+        return values()[( ordinal() + direction.get_right_rotations() )%4];
     }
 
     @Override

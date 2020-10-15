@@ -1,13 +1,15 @@
 package main.agh.cs.lab2;
 
-import main.agh.cs.lab2.utility.Vector2d;
+
+import main.agh.cs.lab2.utility.MoveDirection;
 
 public class World {
     public static void main(String[] args) {
-        Vector2d position1 = new Vector2d(1,2);
-        System.out.println(position1);
-        Vector2d position2 = new Vector2d(-2,1);
-        System.out.println(position2);
-        System.out.println(position1.add(position2));
+        Animal animal = new Animal();
+        MoveDirection[] dirs = OptionsParser.parse(new String[]{"r", "forward", "f", "f"});
+        for(MoveDirection dir : dirs) {
+            animal.move(dir);
+        }
+        System.out.println(animal);
     }
 }
