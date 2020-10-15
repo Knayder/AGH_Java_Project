@@ -1,4 +1,4 @@
-package agh.cs.lab1;
+package main.agh.cs.lab1;
 
 public class World {
     public static void main(String[] args) {

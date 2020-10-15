@@ -1,9 +1,7 @@
-package agh.cs.lab2.test;
+package test.agh.cs.lab2.utility;
 
-import agh.cs.lab2.utility.Vector2d;
+import main.agh.cs.lab2.utility.Vector2d;
 import org.junit.jupiter.api.Test;
-
-import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,6 +13,7 @@ class Vector2dTest {
         assertTrue((new Vector2d(1,2)).precedes(new Vector2d(1,2)));
         assertTrue((new Vector2d(1,2)).precedes(new Vector2d(1,4)));
         assertTrue((new Vector2d(1,2)).precedes(new Vector2d(3,2)));
+        assertFalse((new Vector2d(1,2)).precedes(new Vector2d(3,1)));
     }
 
     @Test

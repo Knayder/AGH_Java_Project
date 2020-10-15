@@ -1,10 +1,10 @@
-package agh.cs.lab2.test;
+package test.agh.cs.lab2.utility;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import agh.cs.lab2.utility.MapDirection;
-import agh.cs.lab2.utility.Vector2d;
+import main.agh.cs.lab2.utility.MapDirection;
+import main.agh.cs.lab2.utility.Vector2d;
 
 class MapDirectionTest {
 

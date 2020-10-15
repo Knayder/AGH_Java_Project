@@ -1,6 +1,6 @@
-package agh.cs.lab2;
+package main.agh.cs.lab2;
 
-import agh.cs.lab2.utility.Vector2d;
+import main.agh.cs.lab2.utility.Vector2d;
 
 public class World {
     public static void main(String[] args) {
