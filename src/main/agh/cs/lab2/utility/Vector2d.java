@@ -3,8 +3,8 @@ package main.agh.cs.lab2.utility;
 import java.lang.Math;
 
 public class Vector2d {
-    public int x;
-    public int y;
+    public final int x;
+    public final int y;
 
     public Vector2d(int x, int y) {
         this.x = x;
