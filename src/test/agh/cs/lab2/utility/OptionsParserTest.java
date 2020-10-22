@@ -1,7 +1,8 @@
-package agh.cs.lab2;
+package agh.cs.lab2.utility;
 
 
 import agh.cs.lab2.utility.MoveDirection;
+import agh.cs.lab2.utility.OptionsParser;
 import org.junit.jupiter.api.Test;
 
 import static agh.cs.lab2.utility.MoveDirection.*;

@@ -2,6 +2,7 @@ package agh.cs.lab2;
 
 
 import agh.cs.lab2.utility.MoveDirection;
+import agh.cs.lab2.utility.OptionsParser;
 import agh.cs.lab2.utility.Vector2d;
 
 public class World {

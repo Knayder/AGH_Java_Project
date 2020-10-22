@@ -1,4 +1,4 @@
-package agh.cs.lab2;
+package agh.cs.lab2.utility;
 
 import agh.cs.lab2.utility.MoveDirection;
 
