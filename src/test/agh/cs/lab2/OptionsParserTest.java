@@ -11,37 +11,37 @@ class OptionsParserTest {
 
     @Test
     void parse() {
-        MoveDirection[] strs;
-        MoveDirection[] dirs;
+        MoveDirection[] parsed;
+        MoveDirection[] correct;
 
-        strs = OptionsParser.parse( new String[]{"f", "r", "l", "b"} );
-        dirs = new MoveDirection[]{FORWARD, RIGHT, LEFT, BACKWARD};
-        assertEquals(strs.length, dirs.length);
-        for(int i = 0; i<strs.length; ++i)
-            assertEquals(strs[i], dirs[i]);
+        parsed = OptionsParser.parse( new String[]{"f", "r", "l", "b"} );
+        correct = new MoveDirection[]{FORWARD, RIGHT, LEFT, BACKWARD};
+        assertEquals(parsed.length, correct.length);
+        for(int i = 0; i<parsed.length; ++i)
+            assertEquals(parsed[i], correct[i]);
 
-        strs = OptionsParser.parse( new String[]{"forward", "right", "left", "backward"} );
-        dirs = new MoveDirection[]{FORWARD, RIGHT, LEFT, BACKWARD};
-        assertEquals(strs.length, dirs.length);
-        for(int i = 0; i<strs.length; ++i)
-            assertEquals(strs[i], dirs[i]);
+        parsed = OptionsParser.parse( new String[]{"forward", "right", "left", "backward"} );
+        correct = new MoveDirection[]{FORWARD, RIGHT, LEFT, BACKWARD};
+        assertEquals(parsed.length, correct.length);
+        for(int i = 0; i<parsed.length; ++i)
+            assertEquals(parsed[i], correct[i]);
 
-        strs = OptionsParser.parse( new String[]{"f", "rs", "l", "b"} );
-        dirs = new MoveDirection[]{FORWARD, LEFT, BACKWARD};
-        assertEquals(strs.length, dirs.length);
-        for(int i = 0; i<strs.length; ++i)
-            assertEquals(strs[i], dirs[i]);
+        parsed = OptionsParser.parse( new String[]{"f", "rs", "l", "b"} );
+        correct = new MoveDirection[]{FORWARD, LEFT, BACKWARD};
+        assertEquals(parsed.length, correct.length);
+        for(int i = 0; i<parsed.length; ++i)
+            assertEquals(parsed[i], correct[i]);
 
-        strs = OptionsParser.parse( new String[]{"f"} );
-        dirs = new MoveDirection[]{FORWARD};
-        assertEquals(strs.length, dirs.length);
-        for(int i = 0; i<strs.length; ++i)
-            assertEquals(strs[i], dirs[i]);
+        parsed = OptionsParser.parse( new String[]{"f"} );
+        correct = new MoveDirection[]{FORWARD};
+        assertEquals(parsed.length, correct.length);
+        for(int i = 0; i<parsed.length; ++i)
+            assertEquals(parsed[i], correct[i]);
 
-        strs = OptionsParser.parse( new String[]{} );
-        dirs = new MoveDirection[]{};
-        assertEquals(strs.length, dirs.length);
-        for(int i = 0; i<strs.length; ++i)
-            assertEquals(strs[i], dirs[i]);
+        parsed = OptionsParser.parse( new String[]{} );
+        correct = new MoveDirection[]{};
+        assertEquals(parsed.length, correct.length);
+        for(int i = 0; i<parsed.length; ++i)
+            assertEquals(parsed[i], correct[i]);
     }
 }

@@ -13,14 +13,15 @@ public class Animal {
         Vector2d newPosition = position.add(newMapDirection.toUnitVector());
         if (newPosition.x >= 0 && newPosition.x <= 4 && newPosition.y >= 0 && newPosition.y <= 4) {
             position = newPosition;
-            mapDirection = newMapDirection;
+            if (direction != MoveDirection.BACKWARD)
+                mapDirection = newMapDirection;
         }
 
     }
 
     @Override
     public String toString() {
-        return "(" + position.x + ", " + position.y + "), " + mapDirection.toString();
+        return position.toString() + ", " + mapDirection.toString();
     }
 
     private MapDirection mapDirection;

@@ -40,16 +40,16 @@ class AnimalTest {
         animal.move(MoveDirection.LEFT);
         assertEquals(animal.toString(), "(0, 3), Południe");
         animal.move(MoveDirection.BACKWARD);
-        assertEquals(animal.toString(), "(0, 4), Północ");
+        assertEquals(animal.toString(), "(0, 4), Południe");
 
         animal.move(MoveDirection.BACKWARD);
+        assertEquals(animal.toString(), "(0, 4), Południe");
+        animal.move(MoveDirection.FORWARD);
         assertEquals(animal.toString(), "(0, 3), Południe");
         animal.move(MoveDirection.FORWARD);
         assertEquals(animal.toString(), "(0, 2), Południe");
         animal.move(MoveDirection.FORWARD);
         assertEquals(animal.toString(), "(0, 1), Południe");
-        animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(0, 0), Południe");
         animal.move(MoveDirection.FORWARD);
         assertEquals(animal.toString(), "(0, 0), Południe");
         animal.move(MoveDirection.RIGHT);

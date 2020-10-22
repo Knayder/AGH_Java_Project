@@ -41,7 +41,7 @@ public class Vector2d {
 
     @Override
     public String toString() {
-        return String.format("(" + x + ", " + y + ")");
+        return "(" + x + ", " + y + ")";
     }
 
     @Override
