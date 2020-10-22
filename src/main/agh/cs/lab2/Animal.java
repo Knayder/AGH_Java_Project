@@ -1,6 +1,6 @@
-package main.agh.cs.lab2;
+package agh.cs.lab2;
 
-import main.agh.cs.lab2.utility.*;
+import agh.cs.lab2.utility.*;
 
 public class Animal {
     public Animal() {

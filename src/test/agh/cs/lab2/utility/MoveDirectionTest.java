@@ -1,10 +1,9 @@
-package test.agh.cs.lab2.utility;
+package agh.cs.lab2.utility;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import main.agh.cs.lab2.utility.MoveDirection;
 
 class MoveDirectionTest {
     @Test

@@ -1,10 +1,10 @@
-package test.agh.cs.lab2;
+package agh.cs.lab2;
 
-import main.agh.cs.lab2.OptionsParser;
-import main.agh.cs.lab2.utility.MoveDirection;
+
+import agh.cs.lab2.utility.MoveDirection;
 import org.junit.jupiter.api.Test;
 
-import static main.agh.cs.lab2.utility.MoveDirection.*;
+import static agh.cs.lab2.utility.MoveDirection.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OptionsParserTest {

@@ -1,7 +1,7 @@
-package main.agh.cs.lab2;
+package agh.cs.lab2;
 
 
-import main.agh.cs.lab2.utility.MoveDirection;
+import agh.cs.lab2.utility.MoveDirection;
 
 public class World {
     public static void main(String[] args) {

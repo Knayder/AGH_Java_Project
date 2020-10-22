@@ -1,6 +1,6 @@
-package main.agh.cs.lab2;
+package agh.cs.lab2;
 
-import main.agh.cs.lab2.utility.MoveDirection;
+import agh.cs.lab2.utility.MoveDirection;
 
 public class OptionsParser {
     public static MoveDirection[] parse(String[] strings) {

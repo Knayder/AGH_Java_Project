@@ -1,11 +1,10 @@
-package test.agh.cs.lab2;
+package agh.cs.lab2;
 
-import main.agh.cs.lab2.utility.MoveDirection;
+import agh.cs.lab2.utility.MoveDirection;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import main.agh.cs.lab2.Animal;
 
 class AnimalTest {
 

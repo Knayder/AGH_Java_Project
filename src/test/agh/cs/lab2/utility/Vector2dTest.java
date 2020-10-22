@@ -1,6 +1,6 @@
-package test.agh.cs.lab2.utility;
+package agh.cs.lab2.utility;
 
-import main.agh.cs.lab2.utility.Vector2d;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
