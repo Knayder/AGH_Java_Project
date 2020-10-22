@@ -11,48 +11,48 @@ class AnimalTest {
     @Test
     void move() {
         Animal animal = new Animal();
-        assertEquals(animal.toString(), "(2, 2), Północ");
+        assertEquals(animal.toString(), "^");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(2, 3), Północ");
+        assertEquals(animal.toString(), "^");
         animal.move(MoveDirection.RIGHT);
-        assertEquals(animal.toString(), "(3, 3), Wschód");
+        assertEquals(animal.toString(), ">");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(4, 3), Wschód");
+        assertEquals(animal.toString(), ">");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(4, 3), Wschód");
+        assertEquals(animal.toString(), ">");
 
         animal.move(MoveDirection.LEFT);
-        assertEquals(animal.toString(), "(4, 4), Północ");
+        assertEquals(animal.toString(), "^");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(4, 4), Północ");
+        assertEquals(animal.toString(), "^");
 
         animal.move(MoveDirection.LEFT);
-        assertEquals(animal.toString(), "(3, 4), Zachód");
+        assertEquals(animal.toString(), "<");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(2, 4), Zachód");
+        assertEquals(animal.toString(), "<");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(1, 4), Zachód");
+        assertEquals(animal.toString(), "<");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(0, 4), Zachód");
+        assertEquals(animal.toString(), "<");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(0, 4), Zachód");
+        assertEquals(animal.toString(), "<");
 
         animal.move(MoveDirection.LEFT);
-        assertEquals(animal.toString(), "(0, 3), Południe");
+        assertEquals(animal.toString(), "v");
         animal.move(MoveDirection.BACKWARD);
-        assertEquals(animal.toString(), "(0, 4), Południe");
+        assertEquals(animal.toString(), "v");
 
         animal.move(MoveDirection.BACKWARD);
-        assertEquals(animal.toString(), "(0, 4), Południe");
+        assertEquals(animal.toString(), "v");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(0, 3), Południe");
+        assertEquals(animal.toString(), "v");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(0, 2), Południe");
+        assertEquals(animal.toString(), "v");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(0, 1), Południe");
+        assertEquals(animal.toString(), "v");
         animal.move(MoveDirection.FORWARD);
-        assertEquals(animal.toString(), "(0, 0), Południe");
+        assertEquals(animal.toString(), "v");
         animal.move(MoveDirection.RIGHT);
-        assertEquals(animal.toString(), "(0, 0), Południe");
+        assertEquals(animal.toString(), "<");
     }
 }
