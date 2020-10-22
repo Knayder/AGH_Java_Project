@@ -19,11 +19,11 @@ public class Vector2d {
         return x >= other.x && y >= other.y;
     }
 
-    public Vector2d upper_right(Vector2d other) {
+    public Vector2d upperRight(Vector2d other) {
         return new Vector2d(Math.max(x, other.x), Math.max(y, other.y));
     }
 
-    public Vector2d lower_left(Vector2d other) {
+    public Vector2d lowerLeft(Vector2d other) {
         return new Vector2d(Math.min(x, other.x), Math.min(y, other.y));
     }
 
@@ -52,9 +52,9 @@ public class Vector2d {
             return false;
 
         // typecast o to Complex so that we can compare data members
-        Vector2d other_casted = (Vector2d)other;
+        Vector2d otherCasted = (Vector2d)other;
 
         // Compare the data members and return accordingly
-        return other_casted.x == x && other_casted.y == y;
+        return otherCasted.x == x && otherCasted.y == y;
     }
 }

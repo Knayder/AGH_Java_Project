@@ -4,7 +4,7 @@ public enum MapDirection {
     NORTH, EAST, SOUTH, WEST;
 
 
-    public Vector2d to_unit_vector() {
+    public Vector2d toUnitVector() {
         switch(this) {
             case WEST: return new Vector2d(-1, 0);
             case EAST: return new Vector2d(1, 0);
@@ -31,8 +31,8 @@ public enum MapDirection {
         return NORTH;
     }
 
-    public MapDirection get_relative_direction(MoveDirection direction) {
-        return values()[( ordinal() + direction.get_right_rotations() )%4];
+    public MapDirection getRelativeDirection(MoveDirection direction) {
+        return values()[( ordinal() + direction.getRightRotations() )%4];
     }
 
     @Override

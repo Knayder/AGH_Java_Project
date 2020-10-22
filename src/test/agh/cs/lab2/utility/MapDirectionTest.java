@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 class MapDirectionTest {
 
     @Test
-    void to_unit_vector() {
-        assertEquals( (MapDirection.NORTH).to_unit_vector(), new Vector2d(0, 1) );
-        assertEquals( (MapDirection.SOUTH).to_unit_vector(), new Vector2d(0, -1) );
-        assertEquals( (MapDirection.EAST).to_unit_vector(), new Vector2d(1, 0) );
-        assertEquals( (MapDirection.WEST).to_unit_vector(), new Vector2d(-1, 0) );
+    void toUnitVector() {
+        assertEquals( (MapDirection.NORTH).toUnitVector(), new Vector2d(0, 1) );
+        assertEquals( (MapDirection.SOUTH).toUnitVector(), new Vector2d(0, -1) );
+        assertEquals( (MapDirection.EAST).toUnitVector(), new Vector2d(1, 0) );
+        assertEquals( (MapDirection.WEST).toUnitVector(), new Vector2d(-1, 0) );
     }
 
     @Test
@@ -39,25 +39,25 @@ class MapDirectionTest {
     }
 
     @Test
-    void get_relative_direction() {
-        assertEquals(MapDirection.NORTH.get_relative_direction(MoveDirection.FORWARD), MapDirection.NORTH);
-        assertEquals(MapDirection.NORTH.get_relative_direction(MoveDirection.RIGHT), MapDirection.EAST);
-        assertEquals(MapDirection.NORTH.get_relative_direction(MoveDirection.BACKWARD), MapDirection.SOUTH);
-        assertEquals(MapDirection.NORTH.get_relative_direction(MoveDirection.LEFT), MapDirection.WEST);
+    void getRelativeDirection() {
+        assertEquals(MapDirection.NORTH.getRelativeDirection(MoveDirection.FORWARD), MapDirection.NORTH);
+        assertEquals(MapDirection.NORTH.getRelativeDirection(MoveDirection.RIGHT), MapDirection.EAST);
+        assertEquals(MapDirection.NORTH.getRelativeDirection(MoveDirection.BACKWARD), MapDirection.SOUTH);
+        assertEquals(MapDirection.NORTH.getRelativeDirection(MoveDirection.LEFT), MapDirection.WEST);
 
-        assertEquals(MapDirection.EAST.get_relative_direction(MoveDirection.FORWARD), MapDirection.EAST);
-        assertEquals(MapDirection.EAST.get_relative_direction(MoveDirection.RIGHT), MapDirection.SOUTH);
-        assertEquals(MapDirection.EAST.get_relative_direction(MoveDirection.BACKWARD), MapDirection.WEST);
-        assertEquals(MapDirection.EAST.get_relative_direction(MoveDirection.LEFT), MapDirection.NORTH);
+        assertEquals(MapDirection.EAST.getRelativeDirection(MoveDirection.FORWARD), MapDirection.EAST);
+        assertEquals(MapDirection.EAST.getRelativeDirection(MoveDirection.RIGHT), MapDirection.SOUTH);
+        assertEquals(MapDirection.EAST.getRelativeDirection(MoveDirection.BACKWARD), MapDirection.WEST);
+        assertEquals(MapDirection.EAST.getRelativeDirection(MoveDirection.LEFT), MapDirection.NORTH);
 
-        assertEquals(MapDirection.SOUTH.get_relative_direction(MoveDirection.FORWARD), MapDirection.SOUTH);
-        assertEquals(MapDirection.SOUTH.get_relative_direction(MoveDirection.RIGHT), MapDirection.WEST);
-        assertEquals(MapDirection.SOUTH.get_relative_direction(MoveDirection.BACKWARD), MapDirection.NORTH);
-        assertEquals(MapDirection.SOUTH.get_relative_direction(MoveDirection.LEFT), MapDirection.EAST);
+        assertEquals(MapDirection.SOUTH.getRelativeDirection(MoveDirection.FORWARD), MapDirection.SOUTH);
+        assertEquals(MapDirection.SOUTH.getRelativeDirection(MoveDirection.RIGHT), MapDirection.WEST);
+        assertEquals(MapDirection.SOUTH.getRelativeDirection(MoveDirection.BACKWARD), MapDirection.NORTH);
+        assertEquals(MapDirection.SOUTH.getRelativeDirection(MoveDirection.LEFT), MapDirection.EAST);
 
-        assertEquals(MapDirection.WEST.get_relative_direction(MoveDirection.FORWARD), MapDirection.WEST);
-        assertEquals(MapDirection.WEST.get_relative_direction(MoveDirection.RIGHT), MapDirection.NORTH);
-        assertEquals(MapDirection.WEST.get_relative_direction(MoveDirection.BACKWARD), MapDirection.EAST);
-        assertEquals(MapDirection.WEST.get_relative_direction(MoveDirection.LEFT), MapDirection.SOUTH);
+        assertEquals(MapDirection.WEST.getRelativeDirection(MoveDirection.FORWARD), MapDirection.WEST);
+        assertEquals(MapDirection.WEST.getRelativeDirection(MoveDirection.RIGHT), MapDirection.NORTH);
+        assertEquals(MapDirection.WEST.getRelativeDirection(MoveDirection.BACKWARD), MapDirection.EAST);
+        assertEquals(MapDirection.WEST.getRelativeDirection(MoveDirection.LEFT), MapDirection.SOUTH);
     }
 }

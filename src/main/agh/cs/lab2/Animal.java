@@ -4,25 +4,25 @@ import agh.cs.lab2.utility.*;
 
 public class Animal {
     public Animal() {
-        this.map_direction = MapDirection.NORTH;
+        this.mapDirection = MapDirection.NORTH;
         this.position = new Vector2d(2, 2);
     }
 
     public void move(MoveDirection direction) {
-        MapDirection new_map_direction = map_direction.get_relative_direction(direction);
-        Vector2d new_position = position.add(new_map_direction.to_unit_vector());
-        if (new_position.x >= 0 && new_position.x <= 4 && new_position.y >= 0 && new_position.y <= 4) {
-            position = new_position;
-            map_direction = new_map_direction;
+        MapDirection newMapDirection = mapDirection.getRelativeDirection(direction);
+        Vector2d newPosition = position.add(newMapDirection.toUnitVector());
+        if (newPosition.x >= 0 && newPosition.x <= 4 && newPosition.y >= 0 && newPosition.y <= 4) {
+            position = newPosition;
+            mapDirection = newMapDirection;
         }
 
     }
 
     @Override
     public String toString() {
-        return "(" + position.x + ", " + position.y + "), " + map_direction.toString();
+        return "(" + position.x + ", " + position.y + "), " + mapDirection.toString();
     }
 
-    private MapDirection map_direction;
+    private MapDirection mapDirection;
     private Vector2d position;
 }

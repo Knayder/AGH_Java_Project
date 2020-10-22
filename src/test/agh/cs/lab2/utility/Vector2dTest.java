@@ -25,19 +25,19 @@ class Vector2dTest {
     }
 
     @Test
-    void upper_right() {
-        assertEquals(  (new Vector2d(1,4)).upper_right(new Vector2d(3, 2)), new Vector2d(3, 4)  );
-        assertEquals(  (new Vector2d(8,3)).upper_right(new Vector2d(4, 5)), new Vector2d(8, 5)  );
-        assertEquals(  (new Vector2d(2,7)).upper_right(new Vector2d(7, 9)), new Vector2d(7, 9)  );
-        assertEquals(  (new Vector2d(8,1)).upper_right(new Vector2d(4, 1)), new Vector2d(8, 1)  );
+    void upperRight() {
+        assertEquals(  (new Vector2d(1,4)).upperRight(new Vector2d(3, 2)), new Vector2d(3, 4)  );
+        assertEquals(  (new Vector2d(8,3)).upperRight(new Vector2d(4, 5)), new Vector2d(8, 5)  );
+        assertEquals(  (new Vector2d(2,7)).upperRight(new Vector2d(7, 9)), new Vector2d(7, 9)  );
+        assertEquals(  (new Vector2d(8,1)).upperRight(new Vector2d(4, 1)), new Vector2d(8, 1)  );
     }
 
     @Test
-    void lower_left() {
-        assertEquals(  (new Vector2d(1,4)).lower_left(new Vector2d(3, 2)), new Vector2d(1, 2)  );
-        assertEquals(  (new Vector2d(8,3)).lower_left(new Vector2d(4, 5)), new Vector2d(4, 3)  );
-        assertEquals(  (new Vector2d(2,7)).lower_left(new Vector2d(7, 9)), new Vector2d(2, 7)  );
-        assertEquals(  (new Vector2d(8,1)).lower_left(new Vector2d(4, 1)), new Vector2d(4, 1)  );
+    void lowerLeft() {
+        assertEquals(  (new Vector2d(1,4)).lowerLeft(new Vector2d(3, 2)), new Vector2d(1, 2)  );
+        assertEquals(  (new Vector2d(8,3)).lowerLeft(new Vector2d(4, 5)), new Vector2d(4, 3)  );
+        assertEquals(  (new Vector2d(2,7)).lowerLeft(new Vector2d(7, 9)), new Vector2d(2, 7)  );
+        assertEquals(  (new Vector2d(8,1)).lowerLeft(new Vector2d(4, 1)), new Vector2d(4, 1)  );
     }
 
     @Test

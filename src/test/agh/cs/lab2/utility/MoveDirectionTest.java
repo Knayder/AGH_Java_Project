@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MoveDirectionTest {
     @Test
-    void get_right_rotations() {
-        assertEquals(MoveDirection.FORWARD.get_right_rotations(), 0);
-        assertEquals(MoveDirection.RIGHT.get_right_rotations(), 1);
-        assertEquals(MoveDirection.BACKWARD.get_right_rotations(), 2);
-        assertEquals(MoveDirection.LEFT.get_right_rotations(), 3);
+    void getRightRotations() {
+        assertEquals(MoveDirection.FORWARD.getRightRotations(), 0);
+        assertEquals(MoveDirection.RIGHT.getRightRotations(), 1);
+        assertEquals(MoveDirection.BACKWARD.getRightRotations(), 2);
+        assertEquals(MoveDirection.LEFT.getRightRotations(), 3);
     }
 }
