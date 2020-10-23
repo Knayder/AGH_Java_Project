@@ -21,7 +21,7 @@ public class Animal {
     @Override
     public String toString() {
         return "(" + position.x + ", " + position.y + "), " + map_direction.toString();
-    }
+    } // wektor ma metodę toString
 
     private MapDirection map_direction;
     private Vector2d position;

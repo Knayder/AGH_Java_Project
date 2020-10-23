@@ -7,7 +7,7 @@ public class OptionsParser {
         MoveDirection[] directions = new MoveDirection[strings.length];
         int index = 0;
         for(String str : strings) {
-            if (str.equals("f") || str.equals("forward"))
+            if (str.equals("f") || str.equals("forward"))   // można użyć switch
                 directions[index++] = MoveDirection.FORWARD;
             else if (str.equals("r") || str.equals("right"))
                 directions[index++] = MoveDirection.RIGHT;
@@ -16,7 +16,7 @@ public class OptionsParser {
             else if (str.equals("l") || str.equals("left"))
                 directions[index++] = MoveDirection.LEFT;
         }
-        MoveDirection[] result = new MoveDirection[index];
+        MoveDirection[] result = new MoveDirection[index];  // Arrays.copyOfRange
         for(int i = 0; i<index; ++i)
             result[i] = directions[i];
         return result;

@@ -11,7 +11,7 @@ class OptionsParserTest {
 
     @Test
     void parse() {
-        MoveDirection[] strs;
+        MoveDirection[] strs;   // co znaczy "strs"?
         MoveDirection[] dirs;
 
         strs = OptionsParser.parse( new String[]{"f", "r", "l", "b"} );
