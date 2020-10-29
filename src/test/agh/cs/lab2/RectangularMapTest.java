@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RectangularMapTest {
 
     @Test
-    void run() {
+    void run() {    // ubogi test
         MoveDirection[] directions = OptionsParser.parse(new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"});
         IWorldMap map = new RectangularMap(10, 5);
         Animal animal1 = new Animal(map);

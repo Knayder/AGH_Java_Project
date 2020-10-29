@@ -3,19 +3,19 @@ package agh.cs.lab2;
 import agh.cs.lab2.utility.*;
 
 public class Animal {
-    public Animal() {
+    public Animal() {   // tego konstruktora nie powinno być
         this.mapDirection = MapDirection.NORTH;
         this.position = new Vector2d(2, 2);
         this.worldMap = null;
     }
 
-    public Animal(IWorldMap map, Vector2d initialPosition) {
+    public Animal(IWorldMap map, Vector2d initialPosition) {    // DRY
         this.mapDirection = MapDirection.NORTH;
         this.position = initialPosition;
         if (map.place(this))
             this.worldMap = map;
         else
-            this.worldMap = null;
+            this.worldMap = null;   // lepiej rzucić wyjątek
     }
 
     public Animal(IWorldMap map) {
@@ -26,7 +26,7 @@ public class Animal {
 
     public void move(MoveDirection direction) {
         MapDirection newMapDirection = mapDirection.getRelativeDirection(direction);
-        Vector2d newPosition = position.add(newMapDirection.toUnitVector());
+        Vector2d newPosition = position.add(newMapDirection.toUnitVector());    // A co z RIGHT i LEFT? One nie mają zmieniać pozycji zwierzęcia.
         if (worldMap == null || worldMap.canMoveTo(newPosition) ) {
             position = newPosition;
             if (direction != MoveDirection.BACKWARD)
@@ -50,5 +50,5 @@ public class Animal {
 
     private MapDirection mapDirection;
     private Vector2d position;
-    private IWorldMap worldMap;
+    private IWorldMap worldMap; // to może być finalne
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class RectangularMap implements IWorldMap {
     public RectangularMap(int width, int height) {
         this.lowerLeftCorner = new Vector2d(0,0);
-        this.upperRightCorner = new Vector2d(width, height);
+        this.upperRightCorner = new Vector2d(width, height);    // width - 1
         this.animals = new ArrayList<Animal>();
 
         this.mapVisualizer = new MapVisualizer(this);
@@ -59,7 +59,7 @@ public class RectangularMap implements IWorldMap {
         return mapVisualizer.draw(lowerLeftCorner, upperRightCorner);
     }
 
-    private List<Animal> animals;
+    private List<Animal> animals;   // właściwie wszystkie 4 mogą być finalne
     private Vector2d lowerLeftCorner;
     private Vector2d upperRightCorner;
 
