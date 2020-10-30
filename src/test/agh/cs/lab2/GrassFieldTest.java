@@ -1,22 +1,22 @@
 package agh.cs.lab2;
 
-
 import agh.cs.lab2.utility.MoveDirection;
 import agh.cs.lab2.utility.OptionsParser;
 import agh.cs.lab2.utility.Vector2d;
+import org.junit.jupiter.api.Test;
 
-public class World {
-    public static void main(String[] args) {
+import static org.junit.jupiter.api.Assertions.*;
+
+class GrassFieldTest {
+
+    @Test
+    void run() {
         MoveDirection[] directions = OptionsParser.parse(new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f", "b"});
-        //MoveDirection[] directions = OptionsParser.parse(new String[]{"b", "b", "b", "f"});
-        //IWorldMap map = new RectangularMap(10, 5);
         IWorldMap map = new GrassField(10);
-        new Animal(map);
-        new Animal(map,new Vector2d(3,4));
-
-        System.out.println(map);
+        Animal animal1 = new Animal(map);
+        Animal animal2 = new Animal(map,new Vector2d(3,4));
         map.run(directions);
-
-        System.out.println(map);
+        assertEquals( animal1.getPosition(), new Vector2d(2, 7) );
+        assertEquals( animal2.getPosition(), new Vector2d(8, 4) );
     }
 }

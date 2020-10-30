@@ -2,16 +2,16 @@ package agh.cs.lab2;
 
 import agh.cs.lab2.utility.*;
 
-public class Animal {
+public class Animal extends AbstractMapElement {
     public Animal() {
+        super(new Vector2d(2,2));
         this.mapDirection = MapDirection.NORTH;
-        this.position = new Vector2d(2, 2);
         this.worldMap = null;
     }
 
     public Animal(IWorldMap map, Vector2d initialPosition) {
+        super(initialPosition);
         this.mapDirection = MapDirection.NORTH;
-        this.position = initialPosition;
         if (map.place(this))
             this.worldMap = map;
         else
@@ -34,12 +34,8 @@ public class Animal {
         }
     }
 
-    public Vector2d getPosition() {
-        return this.position;
-    }
-
     @Override
-    public String toString() {
+    protected String stringRepresentation() {
         switch (this.mapDirection) {
             case WEST: return "<";
             case EAST: return ">";
@@ -49,6 +45,5 @@ public class Animal {
     }
 
     private MapDirection mapDirection;
-    private Vector2d position;
     private IWorldMap worldMap;
 }
