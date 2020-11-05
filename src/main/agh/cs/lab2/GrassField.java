@@ -2,9 +2,7 @@ package agh.cs.lab2;
 
 import agh.cs.lab2.utility.Vector2d;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static java.lang.StrictMath.sqrt;
 
@@ -30,17 +28,14 @@ public class GrassField extends AbstractWorldMap {
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        for(Animal animal : animals)
-            if(animal.getPosition().equals(position))
-                return false;
-        return true;
+        return animals.get(position) == null;
     }
 
     @Override
     public Object objectAt(Vector2d position) {
-        for(Animal animal : animals)
-            if (animal.getPosition().equals(position))
-                return animal;
+        Animal animal = animals.get(position);
+        if(animal != null)
+            return animal;
         for(Grass gr : grass)
             if (gr.getPosition().equals(position))
                 return gr;
@@ -51,9 +46,11 @@ public class GrassField extends AbstractWorldMap {
     protected Vector2d[] getBoundaries() {
         Vector2d lowerLeftCorner = new Vector2d(0,0);
         Vector2d upperRightCorner = new Vector2d(0,0);
-        for(Animal animal : animals) {
-            lowerLeftCorner = lowerLeftCorner.lowerLeft(animal.getPosition());
-            upperRightCorner = upperRightCorner.upperRight(animal.getPosition());
+        Iterator<Map.Entry<Vector2d, Animal>> it = animals.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry<Vector2d, Animal> animal = it.next();
+            lowerLeftCorner = lowerLeftCorner.lowerLeft(animal.getValue().getPosition());
+            upperRightCorner = upperRightCorner.upperRight(animal.getValue().getPosition());
         }
         for(Grass gr : grass) {
             lowerLeftCorner = lowerLeftCorner.lowerLeft(gr.getPosition());

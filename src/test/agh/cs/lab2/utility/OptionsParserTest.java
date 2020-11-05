@@ -27,7 +27,7 @@ class OptionsParserTest {
         for(int i = 0; i<parsed.length; ++i)
             assertEquals(parsed[i], correct[i]);
 
-        parsed = OptionsParser.parse( new String[]{"f", "rs", "l", "b"} );
+        parsed = OptionsParser.parse( new String[]{"f", "l", "b"} );
         correct = new MoveDirection[]{FORWARD, LEFT, BACKWARD};
         assertEquals(parsed.length, correct.length);
         for(int i = 0; i<parsed.length; ++i)

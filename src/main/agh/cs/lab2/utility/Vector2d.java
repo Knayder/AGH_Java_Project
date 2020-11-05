@@ -1,6 +1,7 @@
 package agh.cs.lab2.utility;
 
 import java.lang.Math;
+import java.util.Objects;
 
 public class Vector2d {
     public final int x;
@@ -56,5 +57,13 @@ public class Vector2d {
 
         // Compare the data members and return accordingly
         return otherCasted.x == x && otherCasted.y == y;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 13;
+        hash += this.x * 31;
+        hash += this.y * 17;
+        return hash;
     }
 }

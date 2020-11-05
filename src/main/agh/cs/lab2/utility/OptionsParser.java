@@ -25,6 +25,9 @@ public class OptionsParser {
                     directions[index++] = MoveDirection.LEFT;
                     break;
                 }
+                default: {
+                    throw new IllegalArgumentException("Wrong direction has been given: " + str);
+                }
             }
         }
         return copyOfRange(directions, 0, index);

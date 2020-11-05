@@ -4,12 +4,11 @@ import agh.cs.lab2.utility.MapVisualizer;
 import agh.cs.lab2.utility.MoveDirection;
 import agh.cs.lab2.utility.Vector2d;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public abstract class AbstractWorldMap implements IWorldMap {
     public AbstractWorldMap() {
-        this.animals = new ArrayList<Animal>();
+        this.animals = new HashMap<Vector2d, Animal>();
         this.mapVisualizer = new MapVisualizer(this);
     }
 
@@ -19,19 +18,23 @@ public abstract class AbstractWorldMap implements IWorldMap {
     }
     @Override
     public void run(MoveDirection[] directions) {
-        int size = animals.size();
-        if (size == 0)
-            return;
-        for(int i = 0; i<directions.length; ++i)
-            animals.get(i % size).move(directions[i]);
+        Object[] animals_arr = animals.values().toArray();
+        int size = animals_arr.length;
+
+        for(int i = 0; i<directions.length; ++i) {
+            Animal animal = (Animal)animals_arr[i%size];
+            animals.remove(animal.getPosition());
+            animal.move(directions[i]);
+            animals.put(animal.getPosition(), animal);
+        }
     }
     @Override
     public boolean place(Animal animal) {
         if( canMoveTo(animal.getPosition()) ) {
-            animals.add(animal);
+            animals.put(animal.getPosition(), animal);
             return true;
         }
-        return false;
+        throw new IllegalArgumentException("Cannot place animal");
     }
 
     @Override
@@ -42,7 +45,7 @@ public abstract class AbstractWorldMap implements IWorldMap {
 
     protected abstract Vector2d[] getBoundaries();
 
-
-    protected List<Animal> animals;
+    protected Map<Vector2d, Animal> animals;
+    //protected List<Animal> animals;
     protected MapVisualizer mapVisualizer;
 }
