@@ -15,7 +15,7 @@ public class Animal extends AbstractMapElement {
         if (map.place(this))
             this.worldMap = map;
         else
-            this.worldMap = null;
+            throw new IllegalArgumentException("Cannot place animal on that position");
     }
 
     public Animal(IWorldMap map) {
@@ -26,12 +26,16 @@ public class Animal extends AbstractMapElement {
 
     public void move(MoveDirection direction) {
         MapDirection newMapDirection = mapDirection.getRelativeDirection(direction);
-        Vector2d newPosition = position.add(newMapDirection.toUnitVector());
-        if (worldMap == null || worldMap.canMoveTo(newPosition) ) {
+
+        if(direction == MoveDirection.FORWARD || direction == MoveDirection.BACKWARD) {
+            Vector2d newPosition = position.add(newMapDirection.toUnitVector());
+            if(worldMap != null && !worldMap.canMoveTo(newPosition))
+                return;
             position = newPosition;
-            if (direction != MoveDirection.BACKWARD)
-                mapDirection = newMapDirection;
         }
+
+        if (direction != MoveDirection.BACKWARD)
+            mapDirection = newMapDirection;
     }
 
     @Override
@@ -45,5 +49,5 @@ public class Animal extends AbstractMapElement {
     }
 
     private MapDirection mapDirection;
-    private IWorldMap worldMap;
+    private final IWorldMap worldMap;
 }

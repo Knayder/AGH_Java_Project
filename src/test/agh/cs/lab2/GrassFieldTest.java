@@ -16,7 +16,7 @@ class GrassFieldTest {
         Animal animal1 = new Animal(map);
         Animal animal2 = new Animal(map,new Vector2d(3,4));
         map.run(directions);
-        assertEquals( animal1.getPosition(), new Vector2d(2, 7) );
-        assertEquals( animal2.getPosition(), new Vector2d(8, 4) );
+        assertEquals( animal1.getPosition(), new Vector2d(2, 0) );
+        assertEquals( animal2.getPosition(), new Vector2d(3, 7) );
     }
 }
