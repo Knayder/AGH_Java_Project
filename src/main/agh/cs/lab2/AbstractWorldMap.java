@@ -40,7 +40,7 @@ public abstract class AbstractWorldMap implements IWorldMap {
         return mapVisualizer.draw(corners[0], corners[1]);
     }
 
-    protected abstract Vector2d[] getBoundaries();
+    protected abstract Vector2d[] getBoundaries();  // lepiej użyć Pair<>, bo wymusza odpowiednią liczbę zwróconych wartości
 
 
     protected List<Animal> animals;

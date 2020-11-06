@@ -6,7 +6,7 @@ public class Animal extends AbstractMapElement {
     public Animal() {
         super(new Vector2d(2,2));
         this.mapDirection = MapDirection.NORTH;
-        this.worldMap = null;
+        this.worldMap = null;   // czy to zwierzę znajduje się w poprawnym stanie?
     }
 
     public Animal(IWorldMap map, Vector2d initialPosition) {
