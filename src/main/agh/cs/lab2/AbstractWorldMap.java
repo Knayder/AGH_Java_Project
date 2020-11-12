@@ -45,7 +45,7 @@ public abstract class AbstractWorldMap implements IWorldMap {
 
     protected abstract Vector2d[] getBoundaries();
 
-    protected Map<Vector2d, Animal> animals;
+    protected Map<Vector2d, Animal> animals;    // oba pola mogą być finalne
     //protected List<Animal> animals;
     protected MapVisualizer mapVisualizer;
 }

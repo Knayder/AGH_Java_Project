@@ -30,6 +30,6 @@ public class OptionsParser {
                 }
             }
         }
-        return copyOfRange(directions, 0, index);
+        return copyOfRange(directions, 0, index);   // po co copyOfRange, skoro będziemy mieli tyle kierunków ile zaplanowaliśmy?
     }
 }

@@ -44,5 +44,6 @@ class OptionsParserTest {
         assertEquals(parsed.length, correct.length);
         for(int i = 0; i<parsed.length; ++i)
             assertEquals(parsed[i], correct[i]);
+        // a z błędnymi kierunkami?
     }
 }

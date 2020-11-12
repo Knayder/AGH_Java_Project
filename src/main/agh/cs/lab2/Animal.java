@@ -3,7 +3,7 @@ package agh.cs.lab2;
 import agh.cs.lab2.utility.*;
 
 public class Animal extends AbstractMapElement {
-    public Animal() {
+    public Animal() {   // czy ten konstruktor jest bezpieczny?
         super(new Vector2d(2,2));
         this.mapDirection = MapDirection.NORTH;
         this.worldMap = null;
