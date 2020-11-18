@@ -30,6 +30,6 @@ public class OptionsParser {
                 }
             }
         }
-        return copyOfRange(directions, 0, index);
+        return directions;
     }
 }

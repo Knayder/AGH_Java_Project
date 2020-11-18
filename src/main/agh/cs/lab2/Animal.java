@@ -3,11 +3,6 @@ package agh.cs.lab2;
 import agh.cs.lab2.utility.*;
 
 public class Animal extends AbstractMapElement {
-    public Animal() {
-        super(new Vector2d(2,2));
-        this.mapDirection = MapDirection.NORTH;
-        this.worldMap = null;
-    }
 
     public Animal(IWorldMap map, Vector2d initialPosition) {
         super(initialPosition);
