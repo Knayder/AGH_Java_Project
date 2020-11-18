@@ -45,7 +45,11 @@ class OptionsParserTest {
         for(int i = 0; i<parsed.length; ++i)
             assertEquals(parsed[i], correct[i]);
 
-        parsed = OptionsParser.parse( new String[]{"forwardsss", "right", "left", "backward"} );
+        try {
+            parsed = OptionsParser.parse(new String[]{"forwardsss", "right", "left", "backward"});
+        }catch(Exception e) {
+            fail ( "wrong parser arguement");
+        }
         correct = new MoveDirection[]{FORWARD, RIGHT, LEFT, BACKWARD};
         assertEquals(parsed.length, correct.length);
         for(int i = 0; i<parsed.length; ++i)
