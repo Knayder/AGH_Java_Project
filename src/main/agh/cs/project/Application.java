@@ -6,11 +6,11 @@ import processing.core.PApplet;
 
 public class Application  {
     public Application() {
-        settingsWindow = new SettingsWindow();
+        windowsManager = new WindowsManager();
     }
 
     public void run() {
-        PApplet.runSketch(new String[]{"Simulator"}, settingsWindow);
+        windowsManager.openNewWindow(new SettingsWindow());
     }
-    private SettingsWindow settingsWindow;
+    private WindowsManager windowsManager;
 }

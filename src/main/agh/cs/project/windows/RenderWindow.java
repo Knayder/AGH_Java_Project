@@ -23,6 +23,10 @@ public abstract class RenderWindow extends PApplet {
         background(255,255,255);
     }
 
+    public String getWindowName() {
+        return windowName;
+    }
+
     private String windowName;
     private int width;
     private int height;
