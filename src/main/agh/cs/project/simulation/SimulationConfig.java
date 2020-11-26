@@ -1,6 +1,5 @@
-package agh.cs.project;
+package agh.cs.project.simulation;
 
-import agh.cs.project.utility.Area;
 import agh.cs.project.utility.Vector2;
 
 public class SimulationConfig {

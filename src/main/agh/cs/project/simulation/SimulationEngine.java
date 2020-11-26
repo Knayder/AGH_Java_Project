@@ -1,16 +1,17 @@
 package agh.cs.project.simulation;
 
-import agh.cs.project.SimulationConfig;
+import agh.cs.project.render.Pawn;
 import processing.core.PApplet;
 
-public class SimulationEngine {
-    public SimulationEngine(PApplet context, SimulationConfig config) {
+public class SimulationEngine extends Pawn {
+    public SimulationEngine(SimulationConfig config) {
         this.context = context;
         this.config = config;
     }
 
-    public void draw() {
-        context.rect(50, 50, 200, 200);
+    @Override
+    protected void drawPawn(PApplet context) {
+
     }
 
     private PApplet context;

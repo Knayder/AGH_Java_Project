@@ -4,31 +4,35 @@ import agh.cs.project.utility.AppStyle;
 import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
 
+import java.util.function.Consumer;
+
 public class Button extends Widget {
-    private Runnable callback;
+    private Consumer<Button> callback;
     private String text;
 
     private int margin;
     private int fontSize;
 
-    public Button(String text, Runnable callback) {
-        super(new Vector2(32, 32));
+    public Button(PApplet context, String text, Consumer<Button> callback) {
+        super(new Vector2((int)(context.textWidth(text)) + 2*AppStyle.BUTTON_MARGIN, AppStyle.FONT_SIZE+AppStyle.BUTTON_MARGIN));
         this.text = text;
         this.callback = callback;
 
     }
 
+    public Button setCallback(Consumer<Button> callback) {
+        this.callback = callback;
+        return this;
+    }
+
     @Override
     protected void onClick() {
-        callback.run();
+        if(callback != null)
+            callback.accept(this);
     }
 
     @Override
     protected void drawPawn(PApplet context) {
-
-        context.textSize(AppStyle.FONT_SIZE);
-        setSize(new Vector2((int)(context.textWidth(text)) + 2*AppStyle.BUTTON_MARGIN, AppStyle.FONT_SIZE+AppStyle.BUTTON_MARGIN));
-
         context.fill(AppStyle.SECONDARY_COLOR.getRGB());
         context.rect(0, 0, getSize().x, getSize().y, 7);
 

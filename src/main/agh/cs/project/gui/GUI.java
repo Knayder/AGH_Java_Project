@@ -9,29 +9,48 @@ import java.util.ArrayList;
 
 public class GUI extends Pawn {
     private ArrayList<Widget> widgets;
+    private ArrayList<Widget> widgetsToRemove;
+    private ArrayList<Widget> widgetsToAdd;
     private Vector2 size;
 
     public GUI(Vector2 size) {
         widgets = new ArrayList<>();
+        widgetsToRemove = new ArrayList<>();
+        widgetsToAdd = new ArrayList<>();
         this.size = size;
     }
 
-    public void addWidget(Widget widget) {
-        widgets.add(widget);
+    public Widget addWidget(Widget widget) {
+        widgetsToAdd.add(widget);
+        return widget;
     }
 
     public void removeWidget(Widget widget) {
-        widgets.remove(widget);
+        widgetsToRemove.add(widget);
     }
 
-    public void mouseClicked(Vector2 mousePosition) {
-        for(Widget widget : widgets) {
-            widget.mouseClicked(mousePosition);
+    public boolean mouseClicked(Vector2 mousePosition) {
+        if(
+                mousePosition.biggerThan(getPosition()) &&
+                mousePosition.smallerThan(getPosition().add(size))
+        ) {
+            for (Widget widget : widgets) {
+                widget.mouseClicked(mousePosition);
+            }
         }
+        else
+            return false;
+        return true;
     }
 
     @Override
     protected void drawPawn(PApplet context) {
+        while(!widgetsToRemove.isEmpty())
+            widgets.remove(widgetsToRemove.remove(0));
+
+        while(!widgetsToAdd.isEmpty())
+            widgets.add(widgetsToAdd.remove(0));
+
         context.fill(AppStyle.MAIN_COLOR.getRGB());
         context.rect(0, 0, size.x, size.y);
         context.noFill();
