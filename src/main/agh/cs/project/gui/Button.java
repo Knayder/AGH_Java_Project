@@ -1,6 +1,6 @@
 package agh.cs.project.gui;
 
-import agh.cs.project.render.Pawn;
+import agh.cs.project.utility.AppStyle;
 import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
 
@@ -16,8 +16,6 @@ public class Button extends Widget {
         this.text = text;
         this.callback = callback;
 
-        this.margin = 10;
-        this.fontSize = 20;
     }
 
     @Override
@@ -27,15 +25,16 @@ public class Button extends Widget {
 
     @Override
     protected void drawPawn(PApplet context) {
-        context.textSize(fontSize);
-        setSize(new Vector2((int)(context.textWidth(text)) + 2*margin, fontSize+margin));
 
-        context.fill(37,37,48);
+        context.textSize(AppStyle.FONT_SIZE);
+        setSize(new Vector2((int)(context.textWidth(text)) + 2*AppStyle.BUTTON_MARGIN, AppStyle.FONT_SIZE+AppStyle.BUTTON_MARGIN));
+
+        context.fill(AppStyle.SECONDARY_COLOR.getRGB());
         context.rect(0, 0, getSize().x, getSize().y, 7);
 
 
-        context.fill(255,255,255);
-        context.text(text, margin, getSize().y-10);
+        context.fill(AppStyle.TEXT_COLOR.getRGB());
+        context.text(text, AppStyle.BUTTON_MARGIN, getSize().y-10);
         context.noFill();
     }
 }

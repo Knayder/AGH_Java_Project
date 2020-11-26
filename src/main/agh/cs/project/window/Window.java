@@ -12,22 +12,32 @@ public class Window extends PApplet {
 
     @Override
     public void setup() {
-        gui = new GUI();
+        gui = new GUI(new Vector2(1280, 40));
 
         Widget a = new Button(
-                "Testowy przycisk",
+                "+",
                 () -> {
                     System.out.println("Hello");
                 }
         );
-        a.setPosition(new Vector2(40, 40));
+        a.setPosition(new Vector2(5, 5));
 
         gui.addWidget(a);
 
-        System.out.println(a.getSize());
+        a = new Button(
+                "Simulation 1",
+                () -> {
+                    System.out.println("Hello");
+                }
+        );
+        a.setPosition(new Vector2(42, 5));
+
+        gui.addWidget(a);
 
 
         getSurface().setTitle("Simulation");
+        noFill();
+        noStroke();
     }
 
     @Override
@@ -37,7 +47,7 @@ public class Window extends PApplet {
 
     @Override
     public void draw() {
-        background(255);
+        background(130, 200,130);
         gui.draw(this);
     }
 
