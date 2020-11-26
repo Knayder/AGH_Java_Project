@@ -9,6 +9,7 @@ public class Transformable {
 
     public Transformable() {
         position = new Vector2(0, 0);
+        scale = 1.0f;
     }
 
     protected void applyTransformation(PApplet context) {

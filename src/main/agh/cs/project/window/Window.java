@@ -1,14 +1,33 @@
 package agh.cs.project.window;
 
+import agh.cs.project.gui.Button;
+import agh.cs.project.gui.GUI;
+import agh.cs.project.gui.Widget;
+import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
 import processing.event.MouseEvent;
 
 public class Window extends PApplet {
+    private GUI gui;
+
     @Override
     public void setup() {
+        gui = new GUI();
+
+        Widget a = new Button(
+                "Testowy przycisk",
+                () -> {
+                    System.out.println("Hello");
+                }
+        );
+        a.setPosition(new Vector2(40, 40));
+
+        gui.addWidget(a);
+
+        System.out.println(a.getSize());
+
+
         getSurface().setTitle("Simulation");
-        noStroke();
-        fill(0);
     }
 
     @Override
@@ -19,22 +38,12 @@ public class Window extends PApplet {
     @Override
     public void draw() {
         background(255);
-        fill(0,0,0);
-        //rect(0, 0, 100, 100);
-        pushMatrix();
-        translate(-50, -50);
-        rotate(0.1f);
-        translate(50, 50);
-
-        //translate();
-        fill(255,0,255);
-        rect(0, 0, 100, 100);
-        popMatrix();
+        gui.draw(this);
     }
 
     @Override
     public void mouseClicked(MouseEvent event) {
         if(event.getButton()==LEFT)
-            System.out.println(event.getX() + ", " + event.getY());
+            gui.mouseClicked(new Vector2(event.getX(), event.getY()));
     }
 }
