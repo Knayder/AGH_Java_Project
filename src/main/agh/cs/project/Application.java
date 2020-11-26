@@ -1,15 +1,18 @@
 package agh.cs.project;
 
 
-import agh.cs.project.utility.Vector2;
+import agh.cs.project.window.Window;
+import processing.core.PApplet;
 
 public class Application  {
+    private PApplet window;
+
     public Application() {
-        simulationWindow = new SimulationWindow(new Vector2(1280, 720), "Simulation");
+        window = new Window();
     }
 
     public void run() {
+        PApplet.runSketch(new String[]{"Simulation"}, window);
     }
 
-    private SimulationWindow simulationWindow;
 }
