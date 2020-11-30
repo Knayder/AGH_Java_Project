@@ -16,6 +16,8 @@ public class TaskBar extends GUI {
 
         Widget addButton = addWidget( new Button(context, "+", (Button b1)-> {
             SimulationEngine simulation = simulationsManager.createSimulation();
+            simulationsManager.focusSimulation(simulation); //Set new created simulation as focused
+
 
             Widget newButton = addWidget(new Button(context, "Simulation", (Button b2)->{
                 simulationsManager.focusSimulation(simulation);

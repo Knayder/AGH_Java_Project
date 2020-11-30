@@ -22,7 +22,11 @@ public class Vector2 {
     }
 
     public Vector2 multiply(int a) {
-        return new Vector2(x + a, y + a);
+        return new Vector2(x * a, y * a);
+    }
+
+    public Vector2 multiply(float a) {
+        return new Vector2((int)((float)x * a), (int)((float)y * a));
     }
 
     public boolean smallerThan(Vector2 other) {

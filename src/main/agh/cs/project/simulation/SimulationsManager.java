@@ -49,6 +49,8 @@ public class SimulationsManager extends Pawn {
 
     @Override
     protected void drawPawn(PApplet context) {
+        for(SimulationEngine simulation : simulations)
+            simulation.update(context);
         if(current != null)
             current.draw(context);
     }
