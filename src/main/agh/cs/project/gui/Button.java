@@ -14,7 +14,7 @@ public class Button extends Widget {
     private int fontSize;
 
     public Button(PApplet context, String text, Consumer<Button> callback) {
-        super(new Vector2((int)(context.textWidth(text)) + 2*AppStyle.BUTTON_MARGIN, AppStyle.FONT_SIZE+AppStyle.BUTTON_MARGIN));
+        super(new Vector2((int)(context.textWidth(text)) + 2*AppStyle.BUTTON_MARGIN, AppStyle.BUTTON_FONT_SIZE +AppStyle.BUTTON_MARGIN));
         this.text = text;
         this.callback = callback;
 

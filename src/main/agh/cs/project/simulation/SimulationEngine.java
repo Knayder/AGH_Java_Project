@@ -9,7 +9,7 @@ public class SimulationEngine extends Pawn {
     public SimulationEngine(SimulationConfig config) {
         this.config = config;
         this.lastUpdate = 0;
-        this.speed = 1000;
+        this.speed = 0;
 
         world = new World(config);
     }

@@ -3,6 +3,8 @@ package agh.cs.project.utility;
 import java.awt.*;
 
 public class AppStyle {
+    public static boolean DEBUG_MODE = true;
+
     public static Vector2 WINDOW_SIZE = new Vector2(1280, 720);
     public static int UPPER_BAR_HEIGHT = 35;
 
@@ -11,10 +13,12 @@ public class AppStyle {
 
     public static Color TEXT_COLOR = new Color(37, 37, 48);
 
-    public static int FONT_SIZE = 15;
+    public static int BUTTON_FONT_SIZE = 15;
     public static int BUTTON_MARGIN = 10;
 
     public static int TILE_PIXEL_SIZE = 50;
+
+    public static int ANIMAL_ENERGY_FONT_SIZE = 10;
 
     public static String ANIMAL_ASSET_KEY = "animal";
     public static String GRASS_ASSET_KEY = "grass";

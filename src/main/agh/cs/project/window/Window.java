@@ -1,16 +1,12 @@
 package agh.cs.project.window;
 
 import agh.cs.project.assetsManager.AssetsManager;
-import agh.cs.project.gui.Button;
 import agh.cs.project.gui.GUI;
 import agh.cs.project.gui.TaskBar;
-import agh.cs.project.gui.Widget;
 import agh.cs.project.simulation.SimulationsManager;
 import agh.cs.project.utility.AppStyle;
-import agh.cs.project.utility.Logger;
 import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.event.MouseEvent;
 
 import java.util.ArrayList;
@@ -18,6 +14,7 @@ import java.util.ArrayList;
 public class Window extends PApplet {
     private ArrayList<GUI> gui;
     private SimulationsManager simulationsManager;
+
 
     private void loadAssets() {
         AssetsManager.ASSETS.put(AppStyle.ANIMAL_ASSET_KEY, loadImage("assets/animal.png"));
@@ -35,7 +32,8 @@ public class Window extends PApplet {
 
         noFill();
         noStroke();
-        textSize(AppStyle.FONT_SIZE);
+        textSize(AppStyle.BUTTON_FONT_SIZE);
+
 
         simulationsManager = new SimulationsManager();
 
@@ -56,6 +54,17 @@ public class Window extends PApplet {
         simulationsManager.draw(this);
         for(GUI gui : gui)
             gui.draw(this);
+    }
+
+
+    @Override
+    public void mouseDragged() {
+        simulationsManager.move(new Vector2( mouseX-pmouseX, mouseY-pmouseY ));
+    }
+
+    @Override
+    public void mouseWheel(MouseEvent event) {
+        simulationsManager.scale(1.0f - ((float)(event.getCount()))/10.0f);
     }
 
     @Override

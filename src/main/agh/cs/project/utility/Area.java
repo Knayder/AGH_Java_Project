@@ -7,7 +7,7 @@ public class Area {
     }
 
     public boolean contains(Vector2 point) {
-        return point.biggerThan(position) && point.smallerThan(position.add(size));
+        return point.biggerThan(position) && point.smallerThan(position.add(new Vector2(size.x-1, size.y-1)));
     }
 
     public Vector2 position;
