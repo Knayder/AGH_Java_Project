@@ -47,13 +47,6 @@ public class World extends Pawn {
     }
 
     public void nextDay() {
-        /*
-        [X] adding new grass
-        [X] move animals
-        [X] eating
-        [X] reproduction
-        [X] removing dead animals
-         */
 
         addNewGrass();
         animalsManager.moveAnimals();
