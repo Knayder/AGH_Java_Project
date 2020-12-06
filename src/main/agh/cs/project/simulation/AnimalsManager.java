@@ -15,6 +15,9 @@ public class AnimalsManager extends Pawn {
     private HashMap<Vector2, ArrayList<Animal>> animals;
 
     public AnimalsManager(SimulationConfig config) {
+        if(config.startAnimalsAmount > config.size.x * config.size.y)
+            throw new IllegalArgumentException("Simulation Config is wrong, there are more start animals than possible field!");
+
         this.config = config;
         animals = new HashMap<>();
 

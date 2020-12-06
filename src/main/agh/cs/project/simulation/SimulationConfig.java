@@ -1,10 +1,13 @@
 package agh.cs.project.simulation;
 
+import agh.cs.project.utility.Area;
 import agh.cs.project.utility.Vector2;
 
 public class SimulationConfig {
     public Vector2 size;
     public float jungleRatio;
+    public Area jungleArea;
+    public Area worldArea;
 
     public int startEnergy;
     public int moveEnergy;
@@ -13,22 +16,28 @@ public class SimulationConfig {
     public int startAnimalsAmount;
 
     public SimulationConfig() {
-        size = new Vector2(50, 54);
-        jungleRatio = 0.3f;
-        startEnergy = 100;
-        moveEnergy = 2;
-        plantEnergy = 70;
+        setSize(new Vector2(15, 15));
+        setStartEnergy(100);
+        setMoveEnergy(2);
+        setPlantEnergy(70);
+        setJungleRatio(0.3f);
 
-        startAnimalsAmount = 80;
+        setStartAnimalsAmount(8);
     }
 
     public SimulationConfig setSize(Vector2 size) {
         this.size = size;
+        worldArea = new Area(new Vector2(0, 0), size);
         return this;
     }
 
     public SimulationConfig setJungleRatio(float jungleRatio) {
         this.jungleRatio = jungleRatio;
+
+        Vector2 jungleSize = size.multiply(jungleRatio);
+        Vector2 junglePosition = new Vector2( (size.x-jungleSize.x)/2, (size.y-jungleSize.y)/2 );
+        jungleArea = new Area(junglePosition, jungleSize);
+
         return this;
     }
 
