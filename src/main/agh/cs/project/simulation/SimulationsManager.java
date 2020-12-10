@@ -59,11 +59,6 @@ public class SimulationsManager extends Pawn {
         return 0;
     }
 
-    public List<Integer> getMostCommonGen() {
-        if(current != null)
-            return current.getMostCommonGen();
-        return null;
-    }
 
     public SimulationEngine createSimulation() {
         SimulationEngine simulation = new SimulationEngine(loadConfigFromFile("parameters.json"));

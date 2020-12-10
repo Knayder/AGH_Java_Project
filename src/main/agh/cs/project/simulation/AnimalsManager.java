@@ -1,6 +1,7 @@
 package agh.cs.project.simulation;
 
 import agh.cs.project.render.Pawn;
+import agh.cs.project.utility.AppStyle;
 import agh.cs.project.utility.Area;
 import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
@@ -12,6 +13,8 @@ public class AnimalsManager extends Pawn {
 
     private SimulationConfig config;
 
+    private List<Integer> mostCommonGen;
+
     private HashMap<Vector2, ArrayList<Animal>> animals;
 
     public AnimalsManager(SimulationConfig config) {
@@ -20,6 +23,8 @@ public class AnimalsManager extends Pawn {
 
         this.config = config;
         animals = new HashMap<>();
+
+        this.mostCommonGen = null;
 
         ArrayList<Vector2> uniqueChecker = new ArrayList<>();
 
@@ -55,6 +60,8 @@ public class AnimalsManager extends Pawn {
     }
 
     public List<Integer> getMostCommonGen() {
+        if(mostCommonGen != null)
+            return mostCommonGen;
         HashMap<List<Integer>, Integer> counter = new HashMap<>();
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
             for (Animal animal : entry.getValue()) {
@@ -75,6 +82,7 @@ public class AnimalsManager extends Pawn {
                 max = entry.getValue();
             }
         }
+        mostCommonGen = result;
         return result;
     }
 
@@ -126,6 +134,7 @@ public class AnimalsManager extends Pawn {
     }
 
     public void reproduce(int minEnergy, Area area) {
+        mostCommonGen = null;
         HashMap<Vector2, ArrayList<Animal>> animalsToAdd = new HashMap<>();
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
             ArrayList<Animal> herd = entry.getValue();
@@ -192,6 +201,7 @@ public class AnimalsManager extends Pawn {
     }
 
     public void removeDead() {
+        mostCommonGen = null;
         HashMap<Vector2, ArrayList<Animal>> newAnimals = new HashMap<>();
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
             ArrayList<Animal> herd = entry.getValue();
@@ -207,12 +217,30 @@ public class AnimalsManager extends Pawn {
 
     @Override
     protected void drawPawn(PApplet context) {
+        //mostCommonGen = null;
+        List<Integer> mostCommonGen = getMostCommonGen();
+
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
             Animal highestEnergyAnimal = null;
             for(Animal animal : entry.getValue())
                 if(highestEnergyAnimal == null || animal.getEnergy() > highestEnergyAnimal.getEnergy())
                     highestEnergyAnimal = animal;
             highestEnergyAnimal.draw(context);
+
+            boolean isCommonGened = true;
+            int[] gen = highestEnergyAnimal.getGens();
+            for(int i = 0; i<gen.length; ++i) {
+                if(gen[i] != mostCommonGen.get(i)) {
+                    isCommonGened = false;
+                    break;
+                }
+            }
+            if(isCommonGened) {
+                context.noFill();
+                context.stroke(255, 255, 0);
+                context.rect(highestEnergyAnimal.getPosition().x, highestEnergyAnimal.getPosition().y, AppStyle.TILE_PIXEL_SIZE, AppStyle.TILE_PIXEL_SIZE);
+                context.noStroke();
+            }
         }
     }
 }

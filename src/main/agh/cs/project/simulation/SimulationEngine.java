@@ -18,7 +18,7 @@ public class SimulationEngine extends Pawn {
 
         world = new World(config);
 
-        statistics = new ArrayList<>();
+
     }
 
     public void slowDown() {
@@ -42,20 +42,17 @@ public class SimulationEngine extends Pawn {
 
     public void step() {
         world.nextDay();
-        statistics.add(new Statistic(world.getAnimalsAmount(), world.getGrassAmount()));
+
     }
 
     public ArrayList<Statistic> getStatistics() {
-        return statistics;
+        return world.getStatistics();
     }
 
     public int getTilesAmount() {
         return config.size.x * config.size.y;
     }
 
-    public List<Integer> getMostCommonGen() {
-        return world.getMostCommonGen();
-    }
 
     public void update(PApplet context) {
         if(!paused && context.millis() - lastUpdate >= speed) {
@@ -73,7 +70,7 @@ public class SimulationEngine extends Pawn {
 
     private World world;
 
-    private ArrayList<Statistic> statistics;
+
 
     private int lastUpdate;
     private int speed;

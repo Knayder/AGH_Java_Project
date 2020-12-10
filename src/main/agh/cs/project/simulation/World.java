@@ -9,6 +9,7 @@ import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,6 +19,8 @@ public class World extends Pawn {
 
     private SimulationConfig config;
 
+    private ArrayList<Statistic> statistics;
+
     private Sprite savannaTile;
     private Sprite jungleTile;
     private Sprite map;
@@ -26,11 +29,15 @@ public class World extends Pawn {
     private GrassManager grassManager;
 
 
+
+
     public World(SimulationConfig config) {
         super();
         random = new Random();
 
         this.config = config;
+
+        statistics = new ArrayList<>();
 
         map = null;
         savannaTile = new Sprite((PImage)AssetsManager.ASSETS.get(AppStyle.SAVANNA_ASSET_KEY));
@@ -47,18 +54,16 @@ public class World extends Pawn {
         grassManager.feed(animalsManager);
         animalsManager.reproduce(config.startEnergy/2, config.worldArea);
         animalsManager.removeDead();
+        statistics.add(new Statistic(
+                animalsManager.getAnimalsAmount(),
+                grassManager.getGrassAmount(),
+                animalsManager.getMostCommonGen()
+        ));
     }
 
-    public int getAnimalsAmount() {
-        return animalsManager.getAnimalsAmount();
-    }
 
-    public int getGrassAmount() {
-        return grassManager.getGrassAmount();
-    }
-
-    public List<Integer> getMostCommonGen() {
-        return animalsManager.getMostCommonGen();
+    public ArrayList<Statistic> getStatistics() {
+        return statistics;
     }
 
     @Override
