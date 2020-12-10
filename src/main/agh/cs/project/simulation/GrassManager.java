@@ -47,15 +47,24 @@ public class GrassManager extends Pawn {
     }
 
     public void addNewGrass() {
-        Vector2 innerPosition = getElementAt(emptyInnerJungle, random.nextInt(emptyInnerJungle.size()));
-        Grass innerGrass = new Grass();
-        innerGrass.setWorldPosition(innerPosition);
-        grasses.add(innerGrass);
+        int innerSize = emptyInnerJungle.size();
+        if(innerSize > 0) {
+            Vector2 innerPosition = getElementAt(emptyInnerJungle, random.nextInt(innerSize));
+            Grass innerGrass = new Grass();
+            innerGrass.setWorldPosition(innerPosition);
+            grasses.add(innerGrass);
+            emptyInnerJungle.remove(innerPosition);
+        }
 
-        Vector2 outerPosition = getElementAt(emptyOuterJungle, random.nextInt(emptyOuterJungle.size()));
-        Grass outerGrass = new Grass();
-        innerGrass.setWorldPosition(outerPosition);
-        grasses.add(outerGrass);
+        int outerSize = emptyOuterJungle.size();
+        if(outerSize > 0) {
+            Vector2 outerPosition = getElementAt(emptyOuterJungle, random.nextInt(outerSize));
+            Grass outerGrass = new Grass();
+            outerGrass.setWorldPosition(outerPosition);
+            grasses.add(outerGrass);
+            emptyOuterJungle.remove(outerPosition);
+        }
+
     }
 
     public void feed(AnimalsManager animalsManager) {

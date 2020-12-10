@@ -43,7 +43,6 @@ public class World extends Pawn {
     }
 
     public void nextDay() {
-        System.out.println(grassManager.getEmptySpots());
         grassManager.addNewGrass();
         animalsManager.moveAnimals();
         grassManager.feed(animalsManager);
