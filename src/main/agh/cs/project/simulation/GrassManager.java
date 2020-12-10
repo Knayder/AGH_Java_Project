@@ -84,7 +84,7 @@ public class GrassManager extends Pawn {
         grasses = newGrasses;
     }
 
-    public int getGrassCount() {
+    public int getGrassAmount() {
         return grasses.size();
     }
 

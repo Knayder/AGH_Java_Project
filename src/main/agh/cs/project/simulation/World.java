@@ -4,13 +4,12 @@ import agh.cs.project.assetsManager.AssetsManager;
 import agh.cs.project.render.Pawn;
 import agh.cs.project.render.Sprite;
 import agh.cs.project.utility.AppStyle;
-import agh.cs.project.utility.Area;
 import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -48,6 +47,18 @@ public class World extends Pawn {
         grassManager.feed(animalsManager);
         animalsManager.reproduce(config.startEnergy/2, config.worldArea);
         animalsManager.removeDead();
+    }
+
+    public int getAnimalsAmount() {
+        return animalsManager.getAnimalsAmount();
+    }
+
+    public int getGrassAmount() {
+        return grassManager.getGrassAmount();
+    }
+
+    public List<Integer> getMostCommonGen() {
+        return animalsManager.getMostCommonGen();
     }
 
     @Override

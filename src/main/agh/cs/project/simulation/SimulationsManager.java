@@ -6,6 +6,7 @@ import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import processing.data.JSONObject;
 
@@ -17,6 +18,51 @@ public class SimulationsManager extends Pawn {
     public SimulationsManager() {
         simulations = new ArrayList<>();
         current = null;
+    }
+
+    public void slowDown() {
+        if(current != null)
+            current.slowDown();
+    }
+
+    public void speedUp() {
+        if(current != null)
+            current.speedUp();
+
+    }
+
+    public void pause() {
+        if(current != null)
+            current.pause();
+
+    }
+
+    public void resume() {
+        if(current != null)
+            current.resume();
+    }
+
+    public void step() {
+        if(current != null)
+            current.step();
+    }
+
+    public ArrayList<Statistic> getStatistics() {
+        if(current != null)
+            return current.getStatistics();
+        return null;
+    }
+
+    public int getTilesAmount() {
+        if(current != null)
+            return current.getTilesAmount();
+        return 0;
+    }
+
+    public List<Integer> getMostCommonGen() {
+        if(current != null)
+            return current.getMostCommonGen();
+        return null;
     }
 
     public SimulationEngine createSimulation() {

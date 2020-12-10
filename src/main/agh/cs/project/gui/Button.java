@@ -14,7 +14,10 @@ public class Button extends Widget {
     private int fontSize;
 
     public Button(PApplet context, String text, Consumer<Button> callback) {
-        super(new Vector2((int)(context.textWidth(text)) + 2*AppStyle.BUTTON_MARGIN, AppStyle.BUTTON_FONT_SIZE +AppStyle.BUTTON_MARGIN));
+        super(new Vector2(
+                (int)(context.textWidth(text)) + 2*AppStyle.BUTTON_MARGIN,
+                AppStyle.BUTTON_FONT_SIZE +AppStyle.BUTTON_MARGIN
+        ));
         this.text = text;
         this.callback = callback;
 
@@ -33,12 +36,15 @@ public class Button extends Widget {
 
     @Override
     protected void drawPawn(PApplet context) {
+        if(isHidden())
+            return;
         context.fill(AppStyle.SECONDARY_COLOR.getRGB());
         context.rect(0, 0, getSize().x, getSize().y, 7);
 
 
         context.fill(AppStyle.TEXT_COLOR.getRGB());
-        context.text(text, AppStyle.BUTTON_MARGIN, getSize().y-10);
+        context.textSize(AppStyle.BUTTON_FONT_SIZE);
+        context.text(text, AppStyle.BUTTON_MARGIN, getSize().y-8);
         context.noFill();
     }
 }

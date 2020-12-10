@@ -5,20 +5,62 @@ import agh.cs.project.render.Pawn;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SimulationEngine extends Pawn {
     public SimulationEngine(SimulationConfig config) {
         this.config = config;
         this.lastUpdate = 0;
         this.speed = 0;
+        paused = false;
 
         world = new World(config);
+
+        statistics = new ArrayList<>();
+    }
+
+    public void slowDown() {
+        if(this.speed < 60000)
+            this.speed += 50;
+    }
+
+    public void speedUp() {
+        if(this.speed >= 50)
+            this.speed -= 50;
+
+    }
+
+    public void pause() {
+        paused = true;
+    }
+
+    public void resume() {
+        paused = false;
+    }
+
+    public void step() {
+        world.nextDay();
+        statistics.add(new Statistic(world.getAnimalsAmount(), world.getGrassAmount()));
+    }
+
+    public ArrayList<Statistic> getStatistics() {
+        return statistics;
+    }
+
+    public int getTilesAmount() {
+        return config.size.x * config.size.y;
+    }
+
+    public List<Integer> getMostCommonGen() {
+        return world.getMostCommonGen();
     }
 
     public void update(PApplet context) {
-        if(context.millis() - lastUpdate >= speed) {
+        if(!paused && context.millis() - lastUpdate >= speed) {
             lastUpdate = context.millis();
-            world.nextDay();
-
+            step();
         }
     }
 
@@ -31,6 +73,9 @@ public class SimulationEngine extends Pawn {
 
     private World world;
 
+    private ArrayList<Statistic> statistics;
+
     private int lastUpdate;
     private int speed;
+    private boolean paused;
 }

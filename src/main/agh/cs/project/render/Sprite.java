@@ -18,6 +18,10 @@ public class Sprite extends Pawn {
         size = new Vector2(texture.width, texture.height);
     }
 
+    public PImage getTexture() {
+        return texture;
+    }
+
     public void setCenterOrigin() {
         setRotationOrigin(new Vector2(size.x/2, size.y/2));
     }

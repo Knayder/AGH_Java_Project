@@ -3,10 +3,14 @@ package agh.cs.project.utility;
 import java.awt.*;
 
 public class AppStyle {
-    public static boolean DEBUG_MODE = false;
+    public static boolean DEBUG_MODE = true;
 
     public static Vector2 WINDOW_SIZE = new Vector2(1280, 720);
     public static int UPPER_BAR_HEIGHT = 35;
+
+    public static int SIMULATION_CONTROLLER_WIDTH = 300;
+
+    public static int GUI_MARGIN = 5;
 
     public static Color MAIN_COLOR = new Color(45, 54, 64, 128);
     public static Color SECONDARY_COLOR = new Color(255, 255, 255,128);

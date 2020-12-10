@@ -47,6 +47,38 @@ public class AnimalsManager extends Pawn {
         }
     }
 
+    public int getAnimalsAmount() {
+        int amount = 0;
+        for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet())
+            amount += entry.getValue().size();
+        return amount;
+    }
+
+    public List<Integer> getMostCommonGen() {
+        HashMap<List<Integer>, Integer> counter = new HashMap<>();
+        for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
+            for (Animal animal : entry.getValue()) {
+                List<Integer> gens = new ArrayList<Integer>(animal.getGens().length);
+                for (int i : animal.getGens())
+                    gens.add(i);
+
+                Integer value = counter.get(gens);
+                counter.put(gens, value != null ? value + 1 : 1);
+
+            }
+        }
+        int max = -1;
+        List<Integer> result = null;
+        for(Map.Entry<List<Integer>, Integer> entry : counter.entrySet()) {
+            if(entry.getValue() > max) {
+                result = entry.getKey();
+                max = entry.getValue();
+            }
+        }
+        return result;
+    }
+
+
     public void moveAnimals() {
         HashMap<Vector2, ArrayList<Animal>> newAnimals = new HashMap<>();
 

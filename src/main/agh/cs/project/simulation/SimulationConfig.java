@@ -18,7 +18,7 @@ public class SimulationConfig {
     public SimulationConfig() {
         setSize(new Vector2(15, 15));
         setStartEnergy(100);
-        setMoveEnergy(2);
+        setMoveEnergy(4);
         setPlantEnergy(70);
         setJungleRatio(0.3f);
 

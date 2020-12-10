@@ -2,6 +2,7 @@ package agh.cs.project.window;
 
 import agh.cs.project.assetsManager.AssetsManager;
 import agh.cs.project.gui.GUI;
+import agh.cs.project.gui.SimulationController;
 import agh.cs.project.gui.TaskBar;
 import agh.cs.project.simulation.SimulationsManager;
 import agh.cs.project.utility.AppStyle;
@@ -39,6 +40,7 @@ public class Window extends PApplet {
 
         gui = new ArrayList<>();
         gui.add(new TaskBar(this, simulationsManager));
+        gui.add(new SimulationController(this, simulationsManager));
 
     }
 

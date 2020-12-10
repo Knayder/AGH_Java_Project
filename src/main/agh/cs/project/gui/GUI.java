@@ -34,6 +34,7 @@ public class GUI extends Pawn {
                 mousePosition.biggerThan(getPosition()) &&
                 mousePosition.smallerThan(getPosition().add(size))
         ) {
+            mousePosition = mousePosition.sub(getPosition());
             for (Widget widget : widgets) {
                 widget.mouseClicked(mousePosition);
             }
