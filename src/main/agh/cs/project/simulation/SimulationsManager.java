@@ -53,6 +53,15 @@ public class SimulationsManager extends Pawn {
         return null;
     }
 
+    public Statistic getCurrentStatistic() {
+        if(current != null) {
+            ArrayList<Statistic> statistics = current.getStatistics();
+            if(statistics != null && statistics.size() > 0)
+                return statistics.get(statistics.size()-1);
+        }
+        return null;
+    }
+
     public int getTilesAmount() {
         if(current != null)
             return current.getTilesAmount();

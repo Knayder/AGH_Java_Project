@@ -15,6 +15,11 @@ public class Animal extends PawnWorldElement {
     private Sprite sprite;
     private int worldRotation;
 
+    int age;
+    int birthday;
+    int children;
+    int predecessors;
+
     private Animal parent1;
     private Animal parent2;
 
@@ -23,8 +28,13 @@ public class Animal extends PawnWorldElement {
 
     private Random random;
 
-    public Animal() {
+    public Animal(int birthday) {
         random = new Random();
+
+        age = 0;
+        this.birthday = birthday;
+        children = 0;
+        predecessors = 0;
 
         sprite = new Sprite((PImage)AssetsManager.ASSETS.get(AppStyle.ANIMAL_ASSET_KEY));
         sprite.setCenterOrigin();
@@ -41,7 +51,24 @@ public class Animal extends PawnWorldElement {
     public Animal setParents(Animal parent1, Animal parent2) {
         this.parent1 = parent1;
         this.parent2 = parent2;
+
+        parent1.childrenHasBeenAdded();
+        parent1.predecessorHasBeenAdded();
+        parent2.childrenHasBeenAdded();
+        parent2.predecessorHasBeenAdded();
         return this;
+    }
+
+    public void childrenHasBeenAdded() {
+        children++;
+    }
+
+    public void predecessorHasBeenAdded() {
+        predecessors++;
+        if(parent1 != null)
+            parent1.predecessorHasBeenAdded();
+        if(parent2 != null)
+            parent2.predecessorHasBeenAdded();
     }
 
     public Animal copyGensFromParents() {
@@ -130,12 +157,17 @@ public class Animal extends PawnWorldElement {
         return energy;
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public void setWorldRotation(int worldRotation) {
         this.worldRotation = worldRotation;
         sprite.setRotation(worldRotation * PApplet.PI/4.f);
     }
 
     public void randomGenMove(int stepCost) {
+        age++;
         setWorldRotation(
                 (worldRotation + gens[random.nextInt(32)]) % 8
         );

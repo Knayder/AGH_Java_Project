@@ -10,7 +10,6 @@ import processing.core.PGraphics;
 import processing.core.PImage;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 
@@ -52,11 +51,13 @@ public class World extends Pawn {
         grassManager.addNewGrass();
         animalsManager.moveAnimals();
         grassManager.feed(animalsManager);
-        animalsManager.reproduce(config.startEnergy/2, config.worldArea);
+        animalsManager.reproduce(statistics.size(), config.startEnergy/2, config.worldArea);
         animalsManager.removeDead();
         statistics.add(new Statistic(
                 animalsManager.getAnimalsAmount(),
                 grassManager.getGrassAmount(),
+                animalsManager.getAverageEnergy(),
+                animalsManager.getAverageLifeSpanOfDead(),
                 animalsManager.getMostCommonGen()
         ));
     }

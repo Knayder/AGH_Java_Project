@@ -17,12 +17,19 @@ public class AnimalsManager extends Pawn {
 
     private HashMap<Vector2, ArrayList<Animal>> animals;
 
+    int howManyDied;
+    int sumOfDeadAge;
+
+
     public AnimalsManager(SimulationConfig config) {
         if(config.startAnimalsAmount > config.size.x * config.size.y)
             throw new IllegalArgumentException("Simulation Config is wrong, there are more start animals than possible field!");
 
         this.config = config;
         animals = new HashMap<>();
+
+        howManyDied = 0;
+        sumOfDeadAge = 0;
 
         this.mostCommonGen = null;
 
@@ -39,7 +46,7 @@ public class AnimalsManager extends Pawn {
             } while( uniqueChecker.contains(worldPosition) );
             uniqueChecker.add(worldPosition);
 
-            Animal animal = new Animal()
+            Animal animal = new Animal(0)
                     .generateNewGens()
                     .setEnergy(config.startEnergy);
 
@@ -84,6 +91,24 @@ public class AnimalsManager extends Pawn {
         }
         mostCommonGen = result;
         return result;
+    }
+
+    public int getAverageEnergy() {
+        int count = 0;
+        int energy = 0;
+        for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
+            for (Animal animal : entry.getValue()) {
+                count++;
+                energy += animal.getEnergy();
+            }
+        }
+        return energy/count;
+    }
+
+    public int getAverageLifeSpanOfDead() {
+        if(howManyDied > 0)
+            return sumOfDeadAge/howManyDied;
+        return 0;
     }
 
 
@@ -133,7 +158,7 @@ public class AnimalsManager extends Pawn {
         return true;
     }
 
-    public void reproduce(int minEnergy, Area area) {
+    public void reproduce(int days, int minEnergy, Area area) {
         mostCommonGen = null;
         HashMap<Vector2, ArrayList<Animal>> animalsToAdd = new HashMap<>();
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
@@ -158,7 +183,7 @@ public class AnimalsManager extends Pawn {
                 }
             }
             if(animal1.getEnergy() >= minEnergy && animal2.getEnergy() >= minEnergy) {
-                Animal animal = new Animal()
+                Animal animal = new Animal(days)
                         .setParents(animal1, animal2)
                         .copyGensFromParents()
                         .extractEnergyFromParents();
@@ -206,8 +231,12 @@ public class AnimalsManager extends Pawn {
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
             ArrayList<Animal> herd = entry.getValue();
             for(int i = 0; i<herd.size(); ++i) {
-                if(herd.get(i).getEnergy() <= 0)
+                if(herd.get(i).getEnergy() <= 0) {
+                    //howManyDied++;
+                    //sumOfDeadAge += herd.get(i).getAge();
+
                     herd.remove(i);
+                }
             }
             if(herd.size() > 0)
                 newAnimals.put(entry.getKey(), herd);
