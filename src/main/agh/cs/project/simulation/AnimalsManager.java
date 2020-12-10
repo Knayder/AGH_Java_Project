@@ -176,9 +176,11 @@ public class AnimalsManager extends Pawn {
     @Override
     protected void drawPawn(PApplet context) {
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
-
+            Animal highestEnergyAnimal = null;
             for(Animal animal : entry.getValue())
-                animal.draw(context);
+                if(highestEnergyAnimal == null || animal.getEnergy() > highestEnergyAnimal.getEnergy())
+                    highestEnergyAnimal = animal;
+            highestEnergyAnimal.draw(context);
         }
     }
 }
