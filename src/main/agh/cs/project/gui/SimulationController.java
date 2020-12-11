@@ -64,7 +64,7 @@ public class SimulationController extends GUI {
         ), simulationsManager));
         gens.setPosition(new Vector2(AppStyle.GUI_MARGIN, graph.getPosition().y + graph.getSize().y + 4*AppStyle.GUI_MARGIN));
 
-        /*Widget avgEnergy = addWidget(new DynamicText((Consumer<String> setText)->{
+        Widget avgEnergy = addWidget(new DynamicText((Consumer<String> setText)->{
             Statistic statistic = simulationsManager.getCurrentStatistic();
             if(statistic != null)
                 setText.accept("Average energy: " + Integer.toString(statistic.getAverageEnergy()));
@@ -81,6 +81,15 @@ public class SimulationController extends GUI {
                 setText.accept("");
         }));
         avgLife.setPosition(new Vector2(AppStyle.GUI_MARGIN, avgEnergy.getPosition().y + avgEnergy.getSize().y + 4*AppStyle.GUI_MARGIN));
-            */
+
+        Widget avgChildren = addWidget(new DynamicText((Consumer<String> setText)->{
+            Statistic statistic = simulationsManager.getCurrentStatistic();
+            if(statistic != null)
+                setText.accept("Average amount of children: " + Integer.toString(statistic.getAverageChildrenAmount()));
+            else
+                setText.accept("");
+        }));
+        avgChildren.setPosition(new Vector2(AppStyle.GUI_MARGIN, avgLife.getPosition().y + avgLife.getSize().y + 4*AppStyle.GUI_MARGIN));
+
     }
 }

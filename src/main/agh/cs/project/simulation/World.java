@@ -58,6 +58,7 @@ public class World extends Pawn {
                 grassManager.getGrassAmount(),
                 animalsManager.getAverageEnergy(),
                 animalsManager.getAverageLifeSpanOfDead(),
+                animalsManager.getAverageChildrenAmount(),
                 animalsManager.getMostCommonGen()
         ));
     }

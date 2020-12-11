@@ -3,7 +3,7 @@ package agh.cs.project.utility;
 import java.awt.*;
 
 public class AppStyle {
-    public static boolean DEBUG_MODE = true;
+    public static boolean DEBUG_MODE = false;
 
     public static Vector2 WINDOW_SIZE = new Vector2(1280, 720);
     public static int UPPER_BAR_HEIGHT = 35;

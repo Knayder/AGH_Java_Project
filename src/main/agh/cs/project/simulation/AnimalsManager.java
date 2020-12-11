@@ -111,6 +111,18 @@ public class AnimalsManager extends Pawn {
         return 0;
     }
 
+    public int getAverageChildrenAmount() {
+        int count = 0;
+        int childrenSum = 0;
+        for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
+            for (Animal animal : entry.getValue()) {
+                count++;
+                childrenSum += animal.getChildrenAmount();
+            }
+        }
+        return count == 0 ? 0 : childrenSum/count;
+    }
+
     public void moveAnimals() {
         HashMap<Vector2, ArrayList<Animal>> newAnimals = new HashMap<>();
 
@@ -187,6 +199,8 @@ public class AnimalsManager extends Pawn {
                         .copyGensFromParents()
                         .extractEnergyFromParents();
                 animal.setWorldRotation(random.nextInt(8));
+                animal1.addChild(animal);
+                animal2.addChild(animal);
 
                 Vector2 parentPosition = entry.getKey();
                 ArrayList<Vector2> possiblePositions = new ArrayList<>(Arrays.asList(
@@ -231,8 +245,8 @@ public class AnimalsManager extends Pawn {
             ArrayList<Animal> herd = entry.getValue();
             for(int i = 0; i<herd.size(); ++i) {
                 if(herd.get(i).getEnergy() <= 0) {
-                    //howManyDied++;
-                    //sumOfDeadAge += herd.get(i).getAge();
+                    howManyDied++;
+                    sumOfDeadAge += herd.get(i).getAge();
 
                     herd.remove(i);
                 }

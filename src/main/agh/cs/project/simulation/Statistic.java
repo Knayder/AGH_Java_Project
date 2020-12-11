@@ -7,13 +7,15 @@ public class Statistic {
     private int grassAmount;
     private int averageEnergy;
     private int averageLifeSpanOfDead;
+    private int averageChildrenAmount;
     private List<Integer> mostCommonGen;
 
-    public Statistic(int animalsAmount, int grassAmount, int averageEnergy, int averageLifeSpanOfDead, List<Integer> mostCommonGen) {
+    public Statistic(int animalsAmount, int grassAmount, int averageEnergy, int averageLifeSpanOfDead, int averageChildrenAmount, List<Integer> mostCommonGen) {
         this.animalsAmount = animalsAmount;
         this.grassAmount = grassAmount;
         this.mostCommonGen = mostCommonGen;
         this.averageLifeSpanOfDead = averageLifeSpanOfDead;
+        this.averageChildrenAmount = averageChildrenAmount;
         this.averageEnergy = averageEnergy;
     }
 
@@ -28,6 +30,9 @@ public class Statistic {
     }
     public int getAverageLifeSpanOfDead() {
         return averageLifeSpanOfDead;
+    }
+    public int getAverageChildrenAmount() {
+        return averageChildrenAmount;
     }
     public List<Integer> getMostCommonGen() {
         return mostCommonGen;
