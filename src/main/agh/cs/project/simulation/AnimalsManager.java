@@ -194,7 +194,7 @@ public class AnimalsManager extends Pawn {
                 }
             }
             if(animal1.getEnergy() >= minEnergy && animal2.getEnergy() >= minEnergy) {
-                Animal animal = new Animal(days)
+                Animal animal = new Animal(days+1)
                         .setParents(animal1, animal2)
                         .copyGensFromParents()
                         .extractEnergyFromParents();
@@ -257,9 +257,20 @@ public class AnimalsManager extends Pawn {
         animals = newAnimals;
     }
 
+    public Animal getAnimal(Vector2 position) {
+        ArrayList<Animal> herd = animals.get(position);
+        if(herd == null)
+            return null;
+        Animal highestEnergyAnimal = null;
+        for(Animal animal : herd) {
+            if(highestEnergyAnimal == null || animal.getEnergy() > highestEnergyAnimal.getEnergy())
+                highestEnergyAnimal = animal;
+        }
+        return highestEnergyAnimal;
+    }
+
     @Override
     protected void drawPawn(PApplet context) {
-        //mostCommonGen = null;
         List<Integer> mostCommonGen = getMostCommonGen();
 
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {

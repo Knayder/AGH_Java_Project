@@ -1,11 +1,13 @@
 package agh.cs.project.gui;
 
+import agh.cs.project.simulation.Animal;
 import agh.cs.project.simulation.SimulationsManager;
 import agh.cs.project.simulation.Statistic;
 import agh.cs.project.utility.AppStyle;
 import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
 
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class SimulationController extends GUI {
@@ -55,7 +57,7 @@ public class SimulationController extends GUI {
         step.move(vOffset);
 
 
-        Widget graph = addWidget(new Graph(new Vector2(AppStyle.SIMULATION_CONTROLLER_WIDTH - 2*AppStyle.GUI_MARGIN, 200), simulationsManager));
+        Widget graph = addWidget(new Graph(new Vector2(AppStyle.SIMULATION_CONTROLLER_WIDTH - 2*AppStyle.GUI_MARGIN, 150), simulationsManager));
         graph.setPosition(new Vector2(AppStyle.GUI_MARGIN, slowDown.getPosition().y + slowDown.getSize().y + 4*AppStyle.GUI_MARGIN));
 
         Widget gens = addWidget(new GensDisplay(new Vector2(
@@ -90,6 +92,62 @@ public class SimulationController extends GUI {
                 setText.accept("");
         }));
         avgChildren.setPosition(new Vector2(AppStyle.GUI_MARGIN, avgLife.getPosition().y + avgLife.getSize().y + 4*AppStyle.GUI_MARGIN));
+
+        Widget save = addWidget(new Button(context, "Save", (Button b)->{
+            ArrayList<Statistic> statistics = simulationsManager.getStatistics();
+            if(statistics != null) {
+                int days = statistics.size();
+
+                int animalsAmount = 0;
+                int grassAmount = 0;
+                int averageEnergy = 0;
+                int averageLifeSpanOfDead = 0;
+                int averageChildrenAmount = 0;
+
+                for(Statistic stat : statistics) {
+                    animalsAmount += stat.getAnimalsAmount();
+                    grassAmount += stat.getGrassAmount();
+                    averageEnergy += stat.getAverageEnergy();
+                    averageLifeSpanOfDead += stat.getAverageLifeSpanOfDead();
+                    averageChildrenAmount += stat.getAverageChildrenAmount();
+                }
+                Statistic averageStatistic = new Statistic(
+                        animalsAmount/days,
+                        grassAmount/days,
+                        averageEnergy/days,
+                        averageLifeSpanOfDead/days,
+                        averageChildrenAmount/days,
+                        statistics.get(days-1).getMostCommonGen()
+                );
+                averageStatistic.saveToFile();
+            }
+        }));
+        save.setPosition(new Vector2(AppStyle.GUI_MARGIN, avgChildren.getPosition().y + avgChildren.getSize().y + 4*AppStyle.GUI_MARGIN));
+
+        Widget animGen = addWidget(new DynamicText((Consumer<String> setText)->{
+            Animal animal = simulationsManager.getSelectedAnimal();
+            if(animal != null) {
+                StringBuilder gen = new StringBuilder();
+                gen.append("----------------\n    Selected Animal:\n");
+                for(Integer i : animal.getGens())
+                    gen.append(i);
+                gen.append("\nAge: ");
+                gen.append(animal.getAge());
+                gen.append("\nBirthday: ");
+                gen.append(animal.getBirthday());
+                gen.append("\nChildren amount: ");
+                gen.append(animal.getChildrenAmount());
+                gen.append("\nDescendants amount: ");
+                gen.append(animal.getDescendantsAmount());
+
+                setText.accept(gen.toString());
+            }
+            else
+                setText.accept("----------------\nNo selected animal!");
+        }));
+        animGen.setPosition(new Vector2(AppStyle.GUI_MARGIN, save.getPosition().y + save.getSize().y + 4*AppStyle.GUI_MARGIN));
+
+
 
     }
 }

@@ -1,6 +1,8 @@
 package agh.cs.project.simulation;
 
+import agh.cs.project.assetsManager.AssetsManager;
 import agh.cs.project.render.Pawn;
+import agh.cs.project.utility.AppStyle;
 import agh.cs.project.utility.Logger;
 import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
@@ -86,7 +88,15 @@ public class SimulationsManager extends Pawn {
                 .setJungleRatio(json.getFloat("jungleRatio"));
 
          */
-        return new SimulationConfig();
+        JSONObject json = (JSONObject)AssetsManager.ASSETS.get(AppStyle.PARAMETERS_ASSET_KEY);
+
+        return new SimulationConfig()
+                .setSize(new Vector2(json.getInt("width"), json.getInt("height")))
+                .setStartEnergy(json.getInt("startEnergy"))
+                .setMoveEnergy(json.getInt("moveEnergy"))
+                .setPlantEnergy(json.getInt("plantEnergy"))
+                .setJungleRatio(json.getFloat("jungleRatio"))
+                .setStartAnimalsAmount(json.getInt("startAnimalsAmount"));
     }
 
     public void focusSimulation(SimulationEngine simulation) {
@@ -95,7 +105,17 @@ public class SimulationsManager extends Pawn {
         }
     }
 
+    public void mouseClicked(Vector2 mousePosition) {
+        if(current != null) {
+            current.mouseClicked(mousePosition);
+        }
+    }
 
+    public Animal getSelectedAnimal() {
+        if(current != null)
+            return current.getSelectedAnimal();
+        return null;
+    }
 
     @Override
     protected void drawPawn(PApplet context) {

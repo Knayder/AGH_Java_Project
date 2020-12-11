@@ -27,6 +27,7 @@ public class World extends Pawn {
     private AnimalsManager animalsManager;
     private GrassManager grassManager;
 
+    private Animal selectedAnimal;
 
 
 
@@ -45,6 +46,8 @@ public class World extends Pawn {
         animalsManager = new AnimalsManager(config);
         grassManager = new GrassManager(config);
 
+        this.selectedAnimal = null;
+
     }
 
     public void nextDay() {
@@ -61,6 +64,14 @@ public class World extends Pawn {
                 animalsManager.getAverageChildrenAmount(),
                 animalsManager.getMostCommonGen()
         ));
+    }
+
+    public void select(Vector2 position) {
+        selectedAnimal = animalsManager.getAnimal(position);
+    }
+
+    public Animal getSelectedAnimal() {
+        return selectedAnimal;
     }
 
     public ArrayList<Statistic> getStatistics() {
@@ -94,6 +105,11 @@ public class World extends Pawn {
         map.draw(context);
         grassManager.draw(context);
         animalsManager.draw(context);
-
+        if(selectedAnimal != null) {
+            context.noFill();
+            context.stroke(0, 0, 255);
+            context.rect(selectedAnimal.getPosition().x, selectedAnimal.getPosition().y, AppStyle.TILE_PIXEL_SIZE, AppStyle.TILE_PIXEL_SIZE);
+            context.noStroke();
+        }
     }
 }

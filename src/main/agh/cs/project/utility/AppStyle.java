@@ -8,7 +8,7 @@ public class AppStyle {
     public static Vector2 WINDOW_SIZE = new Vector2(1280, 720);
     public static int UPPER_BAR_HEIGHT = 35;
 
-    public static int SIMULATION_CONTROLLER_WIDTH = 300;
+    public static int SIMULATION_CONTROLLER_WIDTH = 320;
 
     public static int GUI_MARGIN = 5;
 
@@ -28,6 +28,7 @@ public class AppStyle {
     public static String GRASS_ASSET_KEY = "grass";
     public static String JUNGLE_ASSET_KEY = "jungle";
     public static String SAVANNA_ASSET_KEY = "savanna";
+    public static String PARAMETERS_ASSET_KEY = "parameters";
 
 
 }

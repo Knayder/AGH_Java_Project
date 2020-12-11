@@ -6,10 +6,13 @@ import agh.cs.project.gui.SimulationController;
 import agh.cs.project.gui.TaskBar;
 import agh.cs.project.simulation.SimulationsManager;
 import agh.cs.project.utility.AppStyle;
+import agh.cs.project.utility.Logger;
 import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
+import processing.data.JSONObject;
 import processing.event.MouseEvent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Window extends PApplet {
@@ -18,10 +21,21 @@ public class Window extends PApplet {
 
 
     private void loadAssets() {
-        AssetsManager.ASSETS.put(AppStyle.ANIMAL_ASSET_KEY, loadImage("assets/animal.png"));
-        AssetsManager.ASSETS.put(AppStyle.GRASS_ASSET_KEY, loadImage("assets/grass.png"));
-        AssetsManager.ASSETS.put(AppStyle.JUNGLE_ASSET_KEY, loadImage("assets/jungle.png"));
-        AssetsManager.ASSETS.put(AppStyle.SAVANNA_ASSET_KEY, loadImage("assets/savanna.png"));
+        try {
+            AssetsManager.ASSETS.put(AppStyle.ANIMAL_ASSET_KEY, loadImage("assets/animal.png"));
+            AssetsManager.ASSETS.put(AppStyle.GRASS_ASSET_KEY, loadImage("assets/grass.png"));
+            AssetsManager.ASSETS.put(AppStyle.JUNGLE_ASSET_KEY, loadImage("assets/jungle.png"));
+            AssetsManager.ASSETS.put(AppStyle.SAVANNA_ASSET_KEY, loadImage("assets/savanna.png"));
+        }
+        catch(Exception e) {
+            Logger.log("Cannot load graphic assets");
+        }
+        try {
+            AssetsManager.ASSETS.put(AppStyle.PARAMETERS_ASSET_KEY, loadJSONObject("assets/parameters.json"));
+        }
+        catch(Exception e) {
+            Logger.log("Cannot load parameters.json");
+        }
     }
 
 
@@ -72,8 +86,20 @@ public class Window extends PApplet {
     @Override
     public void mouseClicked(MouseEvent event) {
         if(event.getButton()==LEFT) {
-            for(GUI gui : gui)
-                gui.mouseClicked(new Vector2(event.getX(), event.getY()));
+            boolean guiClicked = false;
+            Vector2 mousePosition = new Vector2(event.getX(), event.getY());
+            for(GUI gui : gui) {
+                if (gui.mouseClicked(mousePosition))
+                    guiClicked = true;
+            }
+            if(!guiClicked) {
+                simulationsManager.mouseClicked(
+                        mousePosition
+                                .sub(simulationsManager.getPosition())
+                                .multiply(1.f/simulationsManager.getScale())
+                );
+            }
+
         }
     }
 }

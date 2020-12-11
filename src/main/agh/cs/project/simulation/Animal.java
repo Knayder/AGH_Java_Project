@@ -1,7 +1,6 @@
 package agh.cs.project.simulation;
 
 import agh.cs.project.assetsManager.AssetsManager;
-import agh.cs.project.render.Pawn;
 import agh.cs.project.render.Sprite;
 import agh.cs.project.utility.AppStyle;
 import agh.cs.project.utility.Vector2;
@@ -73,10 +72,10 @@ public class Animal extends PawnWorldElement {
         return count;
     }
 
-    public int getDescendants() {
+    public int getDescendantsAmount() {
         int result = getChildrenAmount();
         for(Animal child : children)
-            result += child.getDescendants();
+            result += child.getDescendantsAmount();
         return result;
     }
 

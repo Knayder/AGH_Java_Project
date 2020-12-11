@@ -2,6 +2,8 @@ package agh.cs.project.simulation;
 
 import agh.cs.project.assetsManager.AssetsManager;
 import agh.cs.project.render.Pawn;
+import agh.cs.project.utility.AppStyle;
+import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -59,6 +61,14 @@ public class SimulationEngine extends Pawn {
             lastUpdate = context.millis();
             step();
         }
+    }
+
+    public void mouseClicked(Vector2 mousePosition) {
+        world.select(new Vector2(mousePosition.x / AppStyle.TILE_PIXEL_SIZE, mousePosition.y / AppStyle.TILE_PIXEL_SIZE));
+    }
+
+    public Animal getSelectedAnimal() {
+        return world.getSelectedAnimal();
     }
 
     @Override
