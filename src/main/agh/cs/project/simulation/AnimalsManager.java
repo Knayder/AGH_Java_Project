@@ -111,7 +111,6 @@ public class AnimalsManager extends Pawn {
         return 0;
     }
 
-
     public void moveAnimals() {
         HashMap<Vector2, ArrayList<Animal>> newAnimals = new HashMap<>();
 

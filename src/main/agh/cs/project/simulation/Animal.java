@@ -8,6 +8,7 @@ import agh.cs.project.utility.Vector2;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -17,11 +18,11 @@ public class Animal extends PawnWorldElement {
 
     int age;
     int birthday;
-    int children;
-    int predecessors;
 
     private Animal parent1;
     private Animal parent2;
+
+    private ArrayList<Animal> children;
 
     private int[] gens;
     private int energy;
@@ -33,8 +34,7 @@ public class Animal extends PawnWorldElement {
 
         age = 0;
         this.birthday = birthday;
-        children = 0;
-        predecessors = 0;
+        children = new ArrayList<>();
 
         sprite = new Sprite((PImage)AssetsManager.ASSETS.get(AppStyle.ANIMAL_ASSET_KEY));
         sprite.setCenterOrigin();
@@ -52,23 +52,32 @@ public class Animal extends PawnWorldElement {
         this.parent1 = parent1;
         this.parent2 = parent2;
 
-        parent1.childrenHasBeenAdded();
-        parent1.predecessorHasBeenAdded();
-        parent2.childrenHasBeenAdded();
-        parent2.predecessorHasBeenAdded();
         return this;
     }
 
-    public void childrenHasBeenAdded() {
-        children++;
+    public void addChild(Animal child) {
+        children.add(child);
     }
 
-    public void predecessorHasBeenAdded() {
-        predecessors++;
-        if(parent1 != null)
-            parent1.predecessorHasBeenAdded();
-        if(parent2 != null)
-            parent2.predecessorHasBeenAdded();
+    public int getChildrenAmount() {
+        return children.size();
+    }
+
+    public int getChildrenAmount(int bornSince, int bornUntil) {
+        int count = 0;
+        for(Animal child : children) {
+            int birthday = child.getBirthday();
+            if(birthday >= bornSince && birthday <= bornUntil)
+                count++;
+        }
+        return count;
+    }
+
+    public int getDescendants() {
+        int result = getChildrenAmount();
+        for(Animal child : children)
+            result += child.getDescendants();
+        return result;
     }
 
     public Animal copyGensFromParents() {
@@ -126,7 +135,6 @@ public class Animal extends PawnWorldElement {
         return this;
     }
 
-
     public Animal extractEnergyFromParents() {
         if(parent1 == null || parent2 == null)
             throw new IllegalArgumentException("Animal doesn't have parents");
@@ -161,9 +169,8 @@ public class Animal extends PawnWorldElement {
         return age;
     }
 
-    public void setWorldRotation(int worldRotation) {
-        this.worldRotation = worldRotation;
-        sprite.setRotation(worldRotation * PApplet.PI/4.f);
+    public int getBirthday() {
+        return birthday;
     }
 
     public void randomGenMove(int stepCost) {
@@ -192,6 +199,11 @@ public class Animal extends PawnWorldElement {
         moveWorldPosition(new Vector2(x, y));
 
         addEnergy(-stepCost);
+    }
+
+    public void setWorldRotation(int worldRotation) {
+        this.worldRotation = worldRotation;
+        sprite.setRotation(worldRotation * PApplet.PI/4.f);
     }
 
     @Override

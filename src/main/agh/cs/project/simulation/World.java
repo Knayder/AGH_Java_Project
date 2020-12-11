@@ -62,7 +62,6 @@ public class World extends Pawn {
         ));
     }
 
-
     public ArrayList<Statistic> getStatistics() {
         return statistics;
     }
