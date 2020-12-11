@@ -1,6 +1,6 @@
 ### AGH Java Project - Evolution simulation
 
-![GIF example of working program](https://i.imgur.com/knlUfC2.gif)
+![](https://i.imgur.com/nyddPtJ.png)
 
 ## Dependencies
 
