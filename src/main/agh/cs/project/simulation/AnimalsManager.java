@@ -102,7 +102,7 @@ public class AnimalsManager extends Pawn {
                 energy += animal.getEnergy();
             }
         }
-        return energy/count;
+        return count > 0 ? energy/count : 0;
     }
 
     public int getAverageLifeSpanOfDead() {
