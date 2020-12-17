@@ -1,6 +1,6 @@
 { 
-    "width": 300,
-    "height": 300,
+    "width": 20,
+    "height": 20,
     "startEnergy": 100,
     "moveEnergy": 4,
     "plantEnergy": 70,

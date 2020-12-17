@@ -23,6 +23,7 @@ public class DynamicText extends Widget {
         });
         setSize(new Vector2( (int)context.textWidth(text), (int)(context.textAscent() + context.textDescent()) ));
         context.fill(255);
+        context.textLeading(17.f);
         context.text(text, 0, 0);
     }
 }

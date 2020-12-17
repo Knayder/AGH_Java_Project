@@ -57,7 +57,7 @@ public class SimulationController extends GUI {
         step.move(vOffset);
 
 
-        Widget graph = addWidget(new Graph(new Vector2(AppStyle.SIMULATION_CONTROLLER_WIDTH - 2*AppStyle.GUI_MARGIN, 150), simulationsManager));
+        Widget graph = addWidget(new Graph(new Vector2(AppStyle.SIMULATION_CONTROLLER_WIDTH - 2*AppStyle.GUI_MARGIN, 100), simulationsManager));
         graph.setPosition(new Vector2(AppStyle.GUI_MARGIN, slowDown.getPosition().y + slowDown.getSize().y + 4*AppStyle.GUI_MARGIN));
 
         Widget gens = addWidget(new GensDisplay(new Vector2(
@@ -66,32 +66,24 @@ public class SimulationController extends GUI {
         ), simulationsManager));
         gens.setPosition(new Vector2(AppStyle.GUI_MARGIN, graph.getPosition().y + graph.getSize().y + 4*AppStyle.GUI_MARGIN));
 
-        Widget avgEnergy = addWidget(new DynamicText((Consumer<String> setText)->{
+        Widget worldStatistics = addWidget(new DynamicText((Consumer<String> setText)->{
             Statistic statistic = simulationsManager.getCurrentStatistic();
-            if(statistic != null)
-                setText.accept("Average energy: " + Integer.toString(statistic.getAverageEnergy()));
+            if(statistic != null) {
+                String builder =
+                        "Average energy: " + statistic.getAverageEnergy() +
+                        "\nAverage lifespan of dead: " + statistic.getAverageLifeSpanOfDead() +
+                        "\nAverage amount of children: " + statistic.getAverageChildrenAmount() +
+                        "\nAverage amount of children: " + statistic.getAverageChildrenAmount() +
+                        "\nDay: " + simulationsManager.getStatistics().size() +
+                        "\nAnimals amount: " + statistic.getAnimalsAmount() +
+                        "\nGrass Amount: " + statistic.getGrassAmount();
+                setText.accept(builder);
+            }
             else
                 setText.accept("");
         }));
-        avgEnergy.setPosition(new Vector2(AppStyle.GUI_MARGIN, gens.getPosition().y + gens.getSize().y + 4*AppStyle.GUI_MARGIN));
+        worldStatistics.setPosition(new Vector2(AppStyle.GUI_MARGIN, gens.getPosition().y + gens.getSize().y + 4*AppStyle.GUI_MARGIN));
 
-        Widget avgLife = addWidget(new DynamicText((Consumer<String> setText)->{
-            Statistic statistic = simulationsManager.getCurrentStatistic();
-            if(statistic != null)
-                setText.accept("Average lifespan of dead: " + Integer.toString(statistic.getAverageLifeSpanOfDead()));
-            else
-                setText.accept("");
-        }));
-        avgLife.setPosition(new Vector2(AppStyle.GUI_MARGIN, avgEnergy.getPosition().y + avgEnergy.getSize().y + 4*AppStyle.GUI_MARGIN));
-
-        Widget avgChildren = addWidget(new DynamicText((Consumer<String> setText)->{
-            Statistic statistic = simulationsManager.getCurrentStatistic();
-            if(statistic != null)
-                setText.accept("Average amount of children: " + Integer.toString(statistic.getAverageChildrenAmount()));
-            else
-                setText.accept("");
-        }));
-        avgChildren.setPosition(new Vector2(AppStyle.GUI_MARGIN, avgLife.getPosition().y + avgLife.getSize().y + 4*AppStyle.GUI_MARGIN));
 
         Widget save = addWidget(new Button(context, "Save", (Button b)->{
             ArrayList<Statistic> statistics = simulationsManager.getStatistics();
@@ -122,7 +114,7 @@ public class SimulationController extends GUI {
                 averageStatistic.saveToFile();
             }
         }));
-        save.setPosition(new Vector2(AppStyle.GUI_MARGIN, avgChildren.getPosition().y + avgChildren.getSize().y + 4*AppStyle.GUI_MARGIN));
+        save.setPosition(new Vector2(AppStyle.GUI_MARGIN, worldStatistics.getPosition().y + worldStatistics.getSize().y + 25*AppStyle.GUI_MARGIN));
 
         Widget animGen = addWidget(new DynamicText((Consumer<String> setText)->{
             Animal animal = simulationsManager.getSelectedAnimal();
