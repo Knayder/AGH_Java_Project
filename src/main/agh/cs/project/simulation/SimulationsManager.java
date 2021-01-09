@@ -78,7 +78,7 @@ public class SimulationsManager extends Pawn {
         return simulation;
     }
 
-    private static SimulationConfig loadConfigFromFile(String path) {
+    private static SimulationConfig loadConfigFromFile(String path) {   // czy ta metoda nie powinna być w SimulationConfig?
         /*
         PApplet temp = new PApplet();
         JSONObject json = temp.loadJSONObject(path);

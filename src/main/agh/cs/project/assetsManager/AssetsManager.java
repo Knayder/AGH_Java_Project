@@ -3,9 +3,9 @@ package agh.cs.project.assetsManager;
 import java.util.HashMap;
 
 public class AssetsManager {
-    public static AssetsManager ASSETS = new AssetsManager();
+    public static AssetsManager ASSETS = new AssetsManager();   // czy to nie powinno być final?
 
-    public AssetsManager() {
+    public AssetsManager() {    // skoro Pan robi coś w rodzaju singletona, to konstruktor raczej prywatny
         container = new HashMap<>();
 
     }

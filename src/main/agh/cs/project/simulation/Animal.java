@@ -13,9 +13,9 @@ import java.util.Random;
 
 public class Animal extends PawnWorldElement {
     private Sprite sprite;
-    private int worldRotation;
+    private int worldRotation;  //obrót świata? Kierunek jako int?
 
-    int age;
+    int age;    // przemyślany modyfikator dostępu?
     int birthday;
 
     private Animal parent1;
@@ -79,7 +79,7 @@ public class Animal extends PawnWorldElement {
         return result;
     }
 
-    public Animal copyGensFromParents() {
+    public Animal copyGensFromParents() {   // public? + po co zwracać zwierzę, skoro je Pan modyfikuje?
         if(parent1 == null || parent2 == null)
             throw new IllegalArgumentException("Animal doesn't have parents");
         int index1 = random.nextInt(31);
@@ -148,10 +148,10 @@ public class Animal extends PawnWorldElement {
     }
 
     public int[] getGens() {
-        return gens;
+        return gens;    // a tablica nie jest przypadkiem modyfikowalna?
     }
 
-    public Animal setEnergy(int energy) {
+    public Animal setEnergy(int energy) {   // czy potrzebne jest set, skoro jest add?
         this.energy = energy;
         return this;
     }

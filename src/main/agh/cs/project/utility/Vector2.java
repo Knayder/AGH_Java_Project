@@ -29,7 +29,7 @@ public class Vector2 {
     }
 
     public Vector2 multiply(float a) {
-        return new Vector2((int)((float)x * a), (int)((float)y * a));
+        return new Vector2((int)((float)x * a), (int)((float)y * a));   // czy to rzutowanie na float jest do czegoś potrzebne?
     }
 
     public boolean smallerThan(Vector2 other) {
@@ -59,6 +59,6 @@ public class Vector2 {
         return Objects.hash(x, y);
     }
 
-    public int x;
+    public int x;   // public?
     public int y;
 }

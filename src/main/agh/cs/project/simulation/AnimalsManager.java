@@ -66,7 +66,7 @@ public class AnimalsManager extends Pawn {
         return amount;
     }
 
-    public List<Integer> getMostCommonGen() {
+    public List<Integer> getMostCommonGen() {   // gene
         if(mostCommonGen != null)
             return mostCommonGen;
         HashMap<List<Integer>, Integer> counter = new HashMap<>();
@@ -169,7 +169,7 @@ public class AnimalsManager extends Pawn {
         return true;
     }
 
-    public void reproduce(int days, int minEnergy, Area area) {
+    public void reproduce(int days, int minEnergy, Area area) { // days czy day?
         mostCommonGen = null;
         HashMap<Vector2, ArrayList<Animal>> animalsToAdd = new HashMap<>();
         for(Map.Entry<Vector2, ArrayList<Animal>> entry : animals.entrySet()) {
@@ -177,8 +177,8 @@ public class AnimalsManager extends Pawn {
             if(herd == null || herd.size() < 2)
                 continue;
             Animal animal1 = herd.get(0);
-            Animal animal2 = herd.get(1);
-            if(animal2.getEnergy() > animal1.getEnergy()) {
+            Animal animal2 = herd.get(1);   // a co z losowaniem rodziców w przypadku remisu?
+            if(animal2.getEnergy() > animal1.getEnergy()) { // nie łatwiej posortować listę?
                 Animal swapTemp = animal1;
                 animal1 = animal2;
                 animal2 = swapTemp;

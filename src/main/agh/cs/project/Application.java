@@ -4,7 +4,7 @@ package agh.cs.project;
 import agh.cs.project.window.Window;
 import processing.core.PApplet;
 
-public class Application  {
+public class Application  { // lepiej tylko główną klasę - tę, którą się uruchamia - trzymać na najwyższym poziomie
     private PApplet window;
 
     public Application() {

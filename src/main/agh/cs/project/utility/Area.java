@@ -10,6 +10,6 @@ public class Area {
         return point.biggerThan(position) && point.smallerThan(position.add(new Vector2(size.x-1, size.y-1)));
     }
 
-    public Vector2 position;
+    public Vector2 position;    // public?
     public Vector2 size;
 }

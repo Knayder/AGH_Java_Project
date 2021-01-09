@@ -7,7 +7,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Grass extends PawnWorldElement {
-    private Sprite sprite;
+    private Sprite sprite;  // pomieszanie logiki aplikacji z wizualizacją
     public Grass() {
         sprite = new Sprite((PImage) AssetsManager.ASSETS.get(AppStyle.GRASS_ASSET_KEY));
     }

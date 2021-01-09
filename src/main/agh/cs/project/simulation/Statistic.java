@@ -54,7 +54,7 @@ public class Statistic {
         return averageChildrenAmount;
     }
     public List<Integer> getMostCommonGen() {
-        return mostCommonGen;
+        return mostCommonGen;   // naruszenie hermetyzacji
     }
 
 }

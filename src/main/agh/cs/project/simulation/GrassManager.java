@@ -10,12 +10,12 @@ import java.util.HashSet;
 import java.util.Random;
 
 public class GrassManager extends Pawn {
-    private Random random;
+    private Random random;  // to pole mogłoby być statyczne
 
     private SimulationConfig config;
 
     private ArrayList<Grass> grasses;
-    private HashSet<Vector2> emptyOuterJungle;
+    private HashSet<Vector2> emptyOuterJungle;  // to się nazywa sawanna
     private HashSet<Vector2> emptyInnerJungle;
 
     public GrassManager(SimulationConfig config) {
@@ -88,7 +88,7 @@ public class GrassManager extends Pawn {
         return grasses.size();
     }
 
-    public int getEmptySpots() {
+    public int getEmptySpots() {    // ta metoda nie zwraca pustych miejsc
         return  getJungleEmptySpots() + getOuterJungleEmptySpots();
     }
 
